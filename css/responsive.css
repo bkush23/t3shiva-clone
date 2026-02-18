@@ -1,0 +1,17 @@
+@media (max-width: 900px) {
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 26px; }
+
+  .feature-grid,
+  .logos-grid,
+  .about-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+}
