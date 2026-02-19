@@ -141,6 +141,12 @@
     transform: translateY(0);
 }
 
+.dropdown.open>.dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .has-submenu {
     position: relative;
 }
