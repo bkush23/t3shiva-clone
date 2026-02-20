@@ -1,221 +1,577 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T3Shiva</title>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T3Shiva 2.0</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
-    <!-- ================= NAVBAR ================= -->
-    <!-- ================= NAVBAR ================= -->
-    <header class="navbar">
-        <div class="container nav-container">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
 
-            <!-- Logo -->
-            <div class="logo">
-                <a href="index.html">
-                    <img src="assets/logo.png" alt="T3Shiva Logo">
-                </a>
-            </div>
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="T3Shiva Logo" height="40" />
+      </a>
 
-            <!-- Right Side -->
-            <div class="nav-right">
+      <!-- Nav links -->
+      <ul class="nav-links">
 
-                <!-- Navigation -->
-                <nav class="nav-menu">
-                    <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#">Demo <span class="arrow"></span></a>
+          <ul class="dropdown">
+            <li><a href="#">Agency</a></li>
+            <li><a href="#">Job Directory</a></li>
+            <li><a href="#">Gym</a></li>
+            <li><a href="#">Medical</a></li>
+            <li><a href="#">Education</a></li>
+            <li><a href="#">B2B</a></li>
+            <li><a href="#">Consulting</a></li>
+            <li><a href="#">Saas-Subscription</a></li>
+            <li><a href="#">Co-working</a></li>
+            <li><a href="#">Web-Application</a></li>
+            <li><a href="#">Video Conference</a></li>
+            <li><a href="#">Mobile App</a></li>
+            <li><a href="#">Product Landing</a></li>
+            <li><a href="#">ECommerce</a></li>
+          </ul>
+        </li>
 
-                        <li class="nav-item dropdown">
-                            <a href="#">Demo ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Agency</a></li>
-                                <li><a href="#">Job Directory</a></li>
-                                <li><a href="#">Gym</a></li>
-                                <li><a href="#">Medical</a></li>
-                                <li><a href="#">Education</a></li>
-                                <li><a href="#">B2B</a></li>
-                                <li><a href="#">Consulting</a></li>
-                                <li><a href="#">Saas-SUbscription</a></li>
-                                <li><a href="#">Co-working</a></li>
-                                <li><a href="#">Web-Application</a></li>
-                                <li><a href="#">Video-Conference</a></li>
-                                <li><a href="#">Mobile App</a></li>
-                                <li><a href="#">Product Landing</a></li>
-                                <li><a href="#">ECommerece</a></li>
-                            </ul>
-                        </li>
+      
+        <li class="nav-item">
+          <a href="#">Layouts <span class="arrow"></span></a>
+          <ul class="dropdown">
+            <li class="has-sub">
+              <a href="#">Site Layouts <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Full Width</a></li>
+                <li><a href="#">Boxed</a></li>
+                <li><a href="#">Wide</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="#">Header Layouts <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Header 01</a></li>
+                <li><a href="#">Header 02</a></li>
+                <li><a href="#">Header 03</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="#">Footer Layouts <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Footer 01</a></li>
+                <li><a href="#">Footer 02</a></li>
+                <li><a href="#">Footer 03</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
 
-                        <li class="nav-item dropdown">
-                            <a href="#">Layouts ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Header Layout</a></li>
-                                <li><a href="#">Footer Layout</a></li>
-                            </ul>
-                        </li>
+        <li class="nav-item">
+          <a href="#">Pages <span class="arrow"></span></a>
+          <ul class="dropdown">
+            <li class="has-sub">
+              <a href="#">Career <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Job Openings</a></li>
+                <li><a href="#">Job Details</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="#">Contacts <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Contact 01</a></li>
+                <li><a href="#">Contact 02</a></li>
+                <li><a href="#">Contact 03</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="#">Pricing <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Pricing 01</a></li>
+                <li><a href="#">Pricing 02</a></li>
+                <li><a href="#">Pricing 03</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">CMS</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </li>
 
-                        <li class="nav-item dropdown">
-                            <a href="#">Pages ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </li>
+        <li class="nav-item">
+          <a href="#">Elements <span class="arrow"></span></a>
+          <ul class="dropdown">
+            <li class="has-sub">
+              <a href="#">Slider <span class="sub-arrow"></span></a>
+              <ul class="subdropdown">
+                <li><a href="#">Full Width Slider</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Accordion</a></li>
+            <li><a href="#">Tabs</a></li>
+            <li><a href="#">Video</a></li>
+            <li><a href="#">Teaser</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Process</a></li>
+            <li><a href="#">Counters</a></li>
+            <li><a href="#">CTA</a></li>
+            <li><a href="#">Testimonial</a></li>
+            <li><a href="#">Map</a></li>
+            <li><a href="#">Content Section</a></li>
+            <li><a href="#">Case Studies</a></li>
+          </ul>
+        </li>
 
-                        <!-- ELEMENTS WITH SUBMENU -->
-                        <li class="nav-item dropdown">
-                            <a href="#">Elements ▾</a>
+        <li class="nav-item">
+          <a href="#">Typography <span class="arrow"></span></a>
+          <ul class="dropdown">
+            <li><a href="#">Headings</a></li>
+            <li><a href="#">List</a></li>
+            <li><a href="#">Alerts</a></li>
+            <li><a href="#">Buttons</a></li>
+            <li><a href="#">Texts</a></li>
+            <li><a href="#">Blockquote</a></li>
+            <li><a href="#">Code</a></li>
+          </ul>
+        </li>
 
-                            <ul class="dropdown-menu">
+        <li class="nav-item">
+          <a href="#">News <span class="arrow"></span></a>
+          <ul class="dropdown">
+            <li><a href="#">List Layout</a></li>
+            <li><a href="#">Masonry Layout</a></li>
+            <li><a href="#">Three Column</a></li>
+            <li><a href="#">Four Column</a></li>
+            <li><a href="#">Full Width</a></li>
+            <li><a href="#">No Margin</a></li>
+            <li><a href="#">No Margin Full Width</a></li>
+          </ul>
+        </li>
 
-                                <li class="has-submenu">
-                                    <a href="#">Slider ▸</a>
+      </ul>
 
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="#" data-action="full-slider">
-                                                Full Width Slider
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="#" data-action="accordion">Accordion</a></li>
-                                <li><a href="#" data-action="tabs">Tabs</a></li>
-                                <li><a href="#" data-action="video">Video</a></li>
-                                <li><a href="#" data-action="gallery">Gallery</a></li>
-                                <li><a href="#" data-action="process">Process</a></li>
-                                <li><a href="#" data-action="counters">Counters</a></li>
-                                <li><a href="#" data-action="cta">CTA</a></li>
-                                <li><a href="#" data-action="testimonial">Testimonial</a></li>
-                                <li><a href="#" data-action="map">Map</a></li>
-                                <li><a href="#" data-action="case-studies">Case Studies</a></li>
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a href="#">Typography ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Headings</a></li>
-                                <li><a href="#">Text Styles</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a href="#">News ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Articles</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-
-                <!-- Actions -->
-                <div class="nav-actions">
-
-                    <!-- Search Icon -->
-                    <button class="nav-icon search" aria-label="Search">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" />
-                        </svg>
-                    </button>
-
-                    <div class="lang">EN ▾</div>
-
-                </div>
-
-            </div>
-
+      <!-- Search + Language -->
+      <div class="nav-actions">
+        <div class="search-wrap">
+          <input id="searchInput" class="search-input" type="text" placeholder="Search..." />
+          <button id="searchBtn" class="search-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            </svg>
+          </button>
         </div>
-    </header>
+        <button class="lang-btn">EN <span class="arrow"></span></button>
+      </div>
+
+      <!-- Hamburger button -->
+      <button id="hamburgerBtn" class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#">Demo</a>
+      <a href="#">Layouts</a>
+      <a href="#">Pages</a>
+      <a href="#">Elements</a>
+      <a href="#">Typography</a>
+      <a href="#">News</a>
+    </div>
+  </nav>
 
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
 
-    <!-- ================= HERO ================= -->
-    <section class="hero section">
-        <div class="container hero-content">
-            <h1>Build Modern Websites With Clean Architecture</h1>
-            <p>Reusable components, scalable structure and clean design principles.</p>
+     
+      <div class="hero-content">
+        <h1>T3 Shiva, Where TYPO3 Meets ReactJs!</h1>
+        <p>T3 Shiva the ultimate TYPO3 Headless Template crafted with ReactJS &amp; NextJS. Focusing on modern design and lightning fast speed.</p>
+        <a href="#" class="btn btn-primary">
+          Get Started Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
 
-            <div class="hero-buttons">
-                <button class="btn">Get Started</button>
-                <button class="btn-outline">Learn More</button>
-            </div>
+      
+      <div class="hero-img">
+        <img src="images/hero-banner.png" alt="T3Shiva Hero Banner" width="546" height="390" />
+      </div>
+
+    </div>
+  </section>
+
+
+  
+
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+
+  
+      <div class="section-heading">
+        <p class="pre-title">Our Services</p>
+        <h2>We provide great services for our customers based on needs</h2>
+      </div>
+
+
+      <div class="services-grid">
+
+        <!-- Card 1 — green button -->
+        <div class="service-card-wrap">
+          <img src="images/service-1.jpg" alt="Pleasant Design" width="354" height="214" />
+          <div class="service-card">
+            <h3>Pleasant Design</h3>
+            <p>Simple yet clean and elegant themed components and layouts with same design for best user experience.</p>
+            <a href="#" class="btn btn-green">Learn more</a>
+          </div>
         </div>
-    </section>
 
-
-    <!-- ================= BRANDS ================= -->
-    <section class="logos section">
-        <div class="container logos-grid">
-            <div class="logo-item">Brand 1</div>
-            <div class="logo-item">Brand 2</div>
-            <div class="logo-item">Brand 3</div>
-            <div class="logo-item">Brand 4</div>
-            <div class="logo-item">Brand 5</div>
+        <!-- Card 2 — blue button -->
+        <div class="service-card-wrap">
+          <img src="images/service-2.jpg" alt="React Hooks" width="354" height="214" />
+          <div class="service-card">
+            <h3>React Hooks</h3>
+            <p>Hooks are an upcoming feature that lets you use state without writing a class.</p>
+            <a href="#" class="btn btn-blue">Learn more</a>
+          </div>
         </div>
-    </section>
 
-
-    <!-- ================= FEATURES ================= -->
-    <section class="features section">
-        <div class="container">
-
-            <div class="section-header">
-                <h2>Core Features</h2>
-                <p>Designed to scale with clean structure and reusable components.</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>Reusable Components</h3>
-                    <p>Built with modular structure for scalability and maintainability.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Clean Architecture</h3>
-                    <p>Organized folder structure for team collaboration.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Responsive Layout</h3>
-                    <p>Mobile-first approach for modern devices.</p>
-                </div>
-            </div>
-
+        <!-- Card 3 — red button -->
+        <div class="service-card-wrap">
+          <img src="images/service-3.jpg" alt="Built in Components" width="354" height="214" />
+          <div class="service-card">
+            <h3>Built in Components</h3>
+            <p>We have provided a lot of useful built in components to make it easy for customers.</p>
+            <a href="#" class="btn btn-red">Learn more</a>
+          </div>
         </div>
-    </section>
+
+      </div>
+    </div>
+  </section>
 
 
-    <!-- ================= CTA ================= -->
-    <section class="cta section">
-        <div class="container cta-content">
-            <h2>Start Building Today</h2>
-            <button class="btn">Get Started</button>
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+
+      <!-- Section heading -->
+      <div class="section-heading">
+        <p class="pre-title">T3 Shiva</p>
+        <h2>Because it is unique, swift and modern!</h2>
+      </div>
+
+      <!-- 2-column grid of feature items -->
+      <div class="inner">
+        <div class="features-grid">
+
+        <!-- Feature 1 — purple icon -->
+        <div class="feature-item">
+          <div class="feature-icon icon-purple">
+            <img src="images/feature-icon-1.svg" alt="Latest React 16.8+" />
+          </div>
+          <div class="feature-text">
+            <h3>Latest React 16.8+</h3>
+            <p>We used latest react vertion ^16.8.6. Its a awesome design made by react.</p>
+          </div>
         </div>
-    </section>
 
-
-    <!-- ================= FOOTER ================= -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <p>© 2026 T3Shiva Clone. Built for learning and growth.</p>
+        <!-- Feature 2 — red/pink icon -->
+        <div class="feature-item">
+          <div class="feature-icon icon-red">
+            <img src="images/feature-icon-2.svg" alt="Built in Components" />
+          </div>
+          <div class="feature-text">
+            <h3>Built in Components</h3>
+            <p>We have provided a lot of useful build in components to make it easy for customers.</p>
+          </div>
         </div>
-    </footer>
 
+        <!-- Feature 3 — green icon -->
+        <div class="feature-item">
+          <div class="feature-icon icon-green">
+            <img src="images/feature-icon-3.svg" alt="Easy feedback sharing" />
+          </div>
+          <div class="feature-text">
+            <h3>Easy feedback sharing</h3>
+            <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 — dark icon -->
+        <div class="feature-item">
+          <div class="feature-icon icon-dark">
+            <img src="images/feature-icon-4.svg" alt="Fast Performance" />
+          </div>
+          <div class="feature-text">
+            <h3>Fast Performance</h3>
+            <p>Optimized for a smaller build size, faster dev compilation and dozens of other improvements.</p>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BRANDS -->
+  <section class="brands">
+    <div class="container">
+      <span class="brand-item">Brand 1</span>
+      <span class="brand-item">Brand 2</span>
+      <span class="brand-item">Brand 3</span>
+      <span class="brand-item">Brand 4</span>
+      <span class="brand-item">Brand 5</span>
+    </div>
+  </section>
+
+
+  
+  <section class="facts">
+    <div class="container">
+      <div class="facts-grid">
+
+        <div class="stat-fact">
+          <h4><span class="counter">85</span>%</h4>
+          <p>Customers visit T3Terminal every month to get their service done.</p>
+        </div>
+
+        <div class="stat-fact">
+          <h4><span class="counter">92</span>%</h4>
+          <p>Satisfaction rate comes from our awesome customers.</p>
+        </div>
+
+        <div class="stat-fact">
+          <h4><span class="counter">80</span>+</h4>
+          <p>Average customer ratings we have got all over internet.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!--  VIDEO -->
+  <section class="video-section" style="background-image: url('https://t3-shiva.t3planet.com/fileadmin/ns_theme_t3shiva/banner/t3-shiva-home-page-video-element.jpg');">
+    <div class="container">
+      <div class="video-content">
+        <a href="#" class="video-play-icon" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21"/>
+          </svg>
+        </a>
+        <h2>How Do We Help You To Grow?</h2>
+        <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <img src="images/quote-mark.svg" alt="Quote" class="quote-mark" />
+          <p class="testimonial-text">OMG! I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.</p>
+          <div class="testimonial-author">
+            <strong>Diego Morata</strong>
+            <span>Web Developer</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <img src="images/quote-mark.svg" alt="Quote" class="quote-mark" />
+          <p class="testimonial-text">Simply the best. Better than all the rest. I'd recommend this product to beginners and advanced users.</p>
+          <div class="testimonial-author">
+            <strong>Franklin Hicks</strong>
+            <span>Digital Marketer</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--CARDS -->
+  <section class="cards-section">
+    <div class="container">
+      <h2 class="section-title">What We Offer</h2>
+      <p class="section-sub">Reusable, responsive, and ready-to-go components.</p>
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h4>Theme Customizer</h4>
+          <p>Change colors, fonts, and layout live using the panel on the right.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📐</div>
+          <h4>Responsive Layout</h4>
+          <p>Works perfectly on mobile, tablet, and desktop screens.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h4>Fast &amp; Lightweight</h4>
+          <p>Pure HTML, CSS &amp; JS — no frameworks, no bloat.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔧</div>
+          <h4>Easy to Edit</h4>
+          <p>CSS variables make global design changes a one-line job.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <a href="#" class="logo footer-logo">T3Shiva</a>
+          <p>A customizable theme built with pure HTML, CSS &amp; JS.</p>
+          <div class="footer-socials">
+            <a href="#">𝕏</a>
+            <a href="#">in</a>
+            <a href="#">◎</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">UI/UX</a></li>
+            <li><a href="#">Branding</a></li>
+            <li><a href="#">Development</a></li>
+            <li><a href="#">SEO</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#"><span class="__cf_email__" data-cfemail="7e161b1212113e0a4d0d1617081f501d1113">[email&#160;protected]</span></a></li>
+            <li><a href="#">+91 98765 43210</a></li>
+            <li><a href="#">Mumbai, India</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2024 T3Shiva. All rights reserved.</span>
+        <span>Built with HTML, CSS &amp; JS</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- THEME CUSTOMIZER -->
+  <button id="customizerToggle" class="customizer-toggle">
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
+    </svg>
+  </button>
+
+  <aside id="customizer" class="customizer">
+    <h2>
+      Theme Settings
+      <button id="customizerClose">✖</button>
+    </h2>
+
+    <div class="c-section">
+      <h3>Colors</h3>
+      <div class="color-row"><span>Primary</span>   <input type="color" id="cPrimary"   value="#473BF0" /></div>
+      <div class="color-row"><span>Secondary</span> <input type="color" id="cSecondary" value="#027B3F" /></div>
+      <div class="color-row"><span>Tertiary</span>  <input type="color" id="cTertiary"  value="#E12B2B" /></div>
+      <div class="color-row"><span>Text</span>      <input type="color" id="cText"      value="#151B2C" /></div>
+    </div>
+
+    <div class="c-section">
+      <h3>Typography</h3>
+      <div class="c-row"><span>Font Size (px)</span> <input type="number" id="fontSize"   value="16" min="12" max="22" /></div>
+      <div class="c-row"><span>Line Height</span>    <input type="number" id="lineHeight" value="1.6" min="1" max="2.5" step="0.1" /></div>
+    </div>
+
+    <div class="c-section">
+      <h3>Layout</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-layout="wide">Wide</button>
+        <button class="c-btn"       data-layout="boxed">Boxed</button>
+      </div>
+    </div>
+
+    <div class="c-section">
+      <h3>Header Theme</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-header="light">Light</button>
+        <button class="c-btn"       data-header="dark">Dark</button>
+      </div>
+    </div>
+
+    <div class="c-section">
+      <h3>Footer Theme</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-footer="dark">Dark</button>
+        <button class="c-btn"       data-footer="light">Light</button>
+      </div>
+    </div>
+
+    <div class="c-section">
+      <h3>Alignment</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-align="left">Left</button>
+        <button class="c-btn"       data-align="center">Center</button>
+        <button class="c-btn"       data-align="right">Right</button>
+      </div>
+    </div>
+
+    <div class="c-actions">
+      <button id="applyBtn"  class="btn-apply">Submit</button>
+      <button id="resetBtn"  class="btn-reset">Reset</button>
+    </div>
+  </aside>
+
+  <script src="js/script.js"></script>
 </body>
-
 </html>
+
