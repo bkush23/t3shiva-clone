@@ -1,5 +1,11 @@
 const root = document.documentElement;
 
+function bindClickOnce(el, handler) {
+  if (!el || el.dataset.clickBound === 'true') return;
+  el.addEventListener('click', handler);
+  el.dataset.clickBound = 'true';
+}
+
 function initScripts() {
 
   // ===============================
@@ -8,41 +14,44 @@ function initScripts() {
 
   const customizerToggle = document.getElementById('customizerToggle');
   const customizerClose  = document.getElementById('customizerClose');
+  const customizerPanel  = document.getElementById('customizer');
   const hamburgerBtn     = document.getElementById('hamburgerBtn');
   const searchBtn        = document.getElementById('searchBtn');
   const applyBtn         = document.getElementById('applyBtn');
   const resetBtn         = document.getElementById('resetBtn');
 
-  if (customizerToggle)
-    customizerToggle.addEventListener('click', () =>
-      document.getElementById('customizer').classList.toggle('open')
-    );
+  bindClickOnce(customizerToggle, () => {
+    if (customizerPanel) customizerPanel.classList.toggle('open');
+  });
 
-  if (customizerClose)
-    customizerClose.addEventListener('click', () =>
-      document.getElementById('customizer').classList.remove('open')
-    );
+  bindClickOnce(customizerClose, () => {
+    if (customizerPanel) customizerPanel.classList.remove('open');
+  });
 
-  if (hamburgerBtn)
-    hamburgerBtn.addEventListener('click', () =>
-      document.getElementById('mobileMenu').classList.toggle('open')
-    );
+  bindClickOnce(hamburgerBtn, () => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.toggle('open');
+  });
 
-  if (searchBtn)
-    searchBtn.addEventListener('click', () =>
-      document.getElementById('searchInput').classList.toggle('open')
-    );
+  bindClickOnce(searchBtn, () => {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.classList.toggle('open');
+  });
 
-  if (applyBtn)
-    applyBtn.addEventListener('click', () => {
-      root.style.setProperty('--primary',     document.getElementById('cPrimary').value);
-      root.style.setProperty('--text',        document.getElementById('cText').value);
-      root.style.setProperty('--font-size',   document.getElementById('fontSize').value + 'px');
-      root.style.setProperty('--line-height', document.getElementById('lineHeight').value);
-    });
+  bindClickOnce(applyBtn, () => {
+    const primary = document.getElementById('cPrimary');
+    const text = document.getElementById('cText');
+    const fontSize = document.getElementById('fontSize');
+    const lineHeight = document.getElementById('lineHeight');
+    if (!primary || !text || !fontSize || !lineHeight) return;
 
-  if (resetBtn)
-    resetBtn.addEventListener('click', resetCustomizer);
+    root.style.setProperty('--primary',     primary.value);
+    root.style.setProperty('--text',        text.value);
+    root.style.setProperty('--font-size',   fontSize.value + 'px');
+    root.style.setProperty('--line-height', lineHeight.value);
+  });
+
+  bindClickOnce(resetBtn, resetCustomizer);
 
 
   // ===============================
@@ -50,28 +59,28 @@ function initScripts() {
   // ===============================
 
   document.querySelectorAll('.customizer [data-layout]').forEach(btn => {
-    btn.addEventListener('click', () => {
+    bindClickOnce(btn, () => {
       root.dataset.layout = btn.dataset.layout;
       setActive(btn);
     });
   });
 
   document.querySelectorAll('.customizer [data-header]').forEach(btn => {
-    btn.addEventListener('click', () => {
+    bindClickOnce(btn, () => {
       root.dataset.header = btn.dataset.header;
       setActive(btn);
     });
   });
 
   document.querySelectorAll('.customizer [data-footer]').forEach(btn => {
-    btn.addEventListener('click', () => {
+    bindClickOnce(btn, () => {
       root.dataset.footer = btn.dataset.footer;
       setActive(btn);
     });
   });
 
   document.querySelectorAll('.customizer [data-align]').forEach(btn => {
-    btn.addEventListener('click', () => {
+    bindClickOnce(btn, () => {
       root.dataset.align = btn.dataset.align;
       setActive(btn);
     });
@@ -84,6 +93,10 @@ function initScripts() {
 
   initCounters();
   initTestimonials();
+  initAccordion();
+  initTabs();
+  initSlider();
+  initPlayButtons();
 }
 
 
@@ -173,4 +186,154 @@ function setActive(clickedBtn) {
     .forEach(btn => btn.classList.remove('active'));
 
   clickedBtn.classList.add('active');
+}
+
+
+// ===============================
+// ACCORDION
+// ===============================
+
+function initAccordion() {
+  const headers = document.querySelectorAll('.accordion-header');
+  if (!headers.length) return;
+
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const content = item.querySelector('.accordion-content');
+      const isOpen = item.classList.contains('active');
+
+      // Close all accordion items
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.accordion-content').style.maxHeight = '0';
+      });
+
+      // Open clicked item
+      if (!isOpen) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+}
+
+
+// ===============================
+// TABS
+// ===============================
+
+function initTabs() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  if (!tabButtons.length) return;
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      const container = button.closest('.tabs-wrapper');
+
+      // Remove active class from all buttons and panes
+      container.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      container.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+      // Add active class to clicked button and corresponding pane
+      button.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+}
+
+
+// ===============================
+// SLIDER
+// ===============================
+
+function initSlider() {
+  const sliders = document.querySelectorAll('.slider-wrapper');
+  if (!sliders.length) return;
+
+  sliders.forEach(slider => {
+    const items = slider.querySelectorAll('.slider-item');
+    const container = slider.parentElement;
+    const prevBtn = container.querySelector('.slider-prev');
+    const nextBtn = container.querySelector('.slider-next');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      items.forEach(item => item.classList.remove('active'));
+      items[index].classList.add('active');
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showSlide(currentIndex);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        showSlide(currentIndex);
+      });
+    }
+
+    // Auto-play slider (optional)
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % items.length;
+      showSlide(currentIndex);
+    }, 5000);
+  });
+}
+
+
+// ===============================
+// PLAY BUTTON / VIDEO MODAL
+// ===============================
+
+function initPlayButtons() {
+  const playButtons = document.querySelectorAll('.play-btn, .video-play-icon');
+  if (!playButtons.length) return;
+
+  playButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showVideoModal();
+    });
+  });
+}
+
+function showVideoModal() {
+  // Create modal if it doesn't exist
+  if (!document.getElementById('videoModal')) {
+    const modal = document.createElement('div');
+    modal.id = 'videoModal';
+    modal.className = 'video-modal';
+    modal.innerHTML = `
+      <div class="video-modal-content">
+        <button class="video-modal-close" aria-label="Close video">✕</button>
+        <iframe width="100%" height="600" 
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Close button handler
+    modal.querySelector('.video-modal-close').addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('show');
+      }
+    });
+  }
+
+  const modal = document.getElementById('videoModal');
+  modal.classList.add('show');
 }

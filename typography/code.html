@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code - Typography - T3Shiva</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container" style="padding: 60px 0;">
+<div class="header-wrapper text-">
+    <p class="heading-text-3 mb-5">Code Light</p>
+</div>
+<pre class="language-html">&lt;header class="masthead"&gt;
+&nbsp; &nbsp; &lt;div class="overlay"&gt;&lt;/div&gt;
+&nbsp; &nbsp; &lt;div class="container"&gt;
+&nbsp; &nbsp; &nbsp; &lt;div class="row"&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="col-lg-8 col-md-10 mx-auto"&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;div class="page-heading"&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;h1&gt;Code Text&lt;/h1&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;span class="subheading"&gt;This is formated code.&lt;/span&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/div&gt;
+&nbsp; &nbsp; &nbsp; &lt;/div&gt;
+&nbsp; &nbsp; &lt;/div&gt;
+&lt;/header&gt;
+</pre>
+
+<div class="header-wrapper text-">
+    <p class="heading-text-3 mb-5">Code Dark</p>
+</div>
+
+<pre style="display: block; overflow-x: auto; background: rgb(25, 23, 28); color: rgb(139, 135, 146); padding: 0.5em;"><code class="language-undefined" style="white-space: pre;"><span>
+</span><span>export function findValuesObject(</span><span style="color: rgb(190, 70, 120);">obj</span><span>, key) {
+</span><span>  return findValuesObjectHelper(</span><span style="color: rgb(190, 70, 120);">obj</span><span>, key, [])</span><span style="color: rgb(126, 120, 135);">;</span><span>
+</span>}
+
+<span>export function findValuesObjectHelper(</span><span style="color: rgb(190, 70, 120);">obj</span><span>, key, list) {
+</span><span>  if (</span><span style="color: rgb(190, 70, 120);">!obj</span><span>) return list;
+</span><span>  if (</span><span style="color: rgb(190, 70, 120);">obj</span><span> instanceof Array) {
+</span><span>    for (</span><span style="color: rgb(170, 87, 60);">var</span><span> i in obj) {
+</span><span>      list = list.concat(</span><span style="color: rgb(190, 70, 120);">findValuesObjectHelper</span><span>(</span><span style="color: rgb(190, 70, 120);">obj</span><span>[i], key, []))</span><span style="color: rgb(126, 120, 135);">;</span><span>
+</span>    }
+    return list;
+  }
+<span>  if (</span><span style="color: rgb(190, 70, 120);">obj</span><span>[key]) list.push(</span><span style="color: rgb(190, 70, 120);">obj</span><span>[key])</span><span style="color: rgb(126, 120, 135);">;</span><span>
+</span>
+<span>  if (</span><span style="color: rgb(190, 70, 120);">typeof</span><span> obj == </span><span style="color: rgb(42, 146, 146);">"object"</span><span> &amp;&amp; obj !== null) {
+</span><span>    var children = Object.keys(</span><span style="color: rgb(190, 70, 120);">obj</span><span>)</span><span style="color: rgb(126, 120, 135);">;</span><span>
+</span><span>    if (</span><span style="color: rgb(190, 70, 120);">children.length</span><span> &gt; </span><span style="color: rgb(170, 87, 60);">0</span><span>) {
+</span><span>      for (</span><span style="color: rgb(190, 70, 120);">i</span><span> = </span><span style="color: rgb(170, 87, 60);">0</span><span style="color: rgb(126, 120, 135);">; i &lt; children.length; i++) {</span><span>
+</span><span>        list = list.concat(</span><span style="color: rgb(190, 70, 120);">findValuesObjectHelper</span><span>(</span><span style="color: rgb(190, 70, 120);">obj</span><span>[children[i]], key, []))</span><span style="color: rgb(126, 120, 135);">;</span><span>
+</span>      }
+    }
+  }
+  return list;
+}
+</code></pre>
+  </main>
+
+  <div id="footer"></div>
+  <div id="theme-customizer"></div>
+
+  <script>window.COMPONENTS_BASE = '../';</script>
+  <script src="../js/components.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>
