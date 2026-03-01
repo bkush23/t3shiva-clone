@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button – Element Component</title>
+  <link rel="stylesheet" href="/css/shared.css" />
+  <style>
+    .btn-grid { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 40px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer;
+      border: 2px solid transparent; border-radius: 10px;
+      text-decoration: none; transition: all 0.2s; white-space: nowrap;
+      padding: 10px 22px; font-size: 0.9rem; line-height: 1;
+    }
+
+    /* Variants */
+    .btn-primary   { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: #3a2fd4; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(71,59,240,0.35); }
+
+    .btn-secondary { background: var(--secondary); color: #fff; }
+    .btn-secondary:hover { background: #025e30; transform: translateY(-1px); }
+
+    .btn-accent    { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: #b81e1e; transform: translateY(-1px); }
+
+    .btn-outline   { background: transparent; border-color: var(--primary); color: var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+
+    .btn-ghost     { background: transparent; border-color: var(--border); color: var(--text); }
+    .btn-ghost:hover { background: #f3f4f6; border-color: #d1d5db; }
+
+    .btn-dark      { background: var(--text); color: #fff; }
+    .btn-dark:hover { background: #2d3748; }
+
+    /* Sizes */
+    .btn-sm  { padding: 7px 16px; font-size: 0.8rem; border-radius: 8px; }
+    .btn-lg  { padding: 14px 32px; font-size: 1rem; border-radius: 12px; }
+    .btn-xl  { padding: 18px 42px; font-size: 1.1rem; border-radius: 14px; }
+
+    /* Icon only */
+    .btn-icon { padding: 10px; border-radius: 10px; }
+    .btn-icon.btn-sm { padding: 7px; }
+    .btn-icon.btn-lg { padding: 14px; }
+
+    /* Pill */
+    .btn-pill { border-radius: 100px; }
+
+    /* Loading */
+    .btn-loading { position: relative; pointer-events: none; opacity: 0.8; }
+    .btn-loading .btn-text { opacity: 0; }
+    .btn-loading::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Disabled */
+    .btn:disabled, .btn[aria-disabled="true"] {
+      opacity: 0.4; pointer-events: none; cursor: not-allowed;
+    }
+
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .section-block { margin-bottom: 44px; }
+
+    svg.icon { width: 16px; height: 16px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+  <nav class="back-nav">
+    <a href="index.html">← Back</a>
+    <span class="tag">🔘 Button</span>
+  </nav>
+
+  <div class="demo-wrap">
+    <div class="demo-label">UI Element</div>
+    <h1 class="demo-title">Button <span>Component</span></h1>
+    <p class="demo-sub">Every variant you need — sizes, states, icons, pills, and loading.</p>
+
+    <!-- Variants -->
+    <div class="section-block">
+      <div class="section-label">Variants</div>
+      <div class="btn-grid">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-accent">Accent</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-dark">Dark</button>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section-block">
+      <div class="section-label">Sizes</div>
+      <div class="btn-grid">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+        <button class="btn btn-primary btn-xl">Extra Large</button>
+      </div>
+    </div>
+
+    <!-- With Icons -->
+    <div class="section-block">
+      <div class="section-label">With Icons</div>
+      <div class="btn-grid">
+        <button class="btn btn-primary">
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 4a1 1 0 000 2h11.586l-2.293 2.293a1 1 0 101.414 1.414l4-4a1 1 0 000-1.414l-4-4a1 1 0 10-1.414 1.414L14.586 4H3z"/></svg>
+          Get Started
+        </button>
+        <button class="btn btn-outline">
+          Download
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+        <button class="btn btn-ghost">
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          Contact
+        </button>
+      </div>
+    </div>
+
+    <!-- Icon only -->
+    <div class="section-block">
+      <div class="section-label">Icon Only</div>
+      <div class="btn-grid">
+        <button class="btn btn-primary btn-icon btn-sm" title="Search"><svg class="icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg></button>
+        <button class="btn btn-primary btn-icon" title="Add"><svg class="icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg></button>
+        <button class="btn btn-outline btn-icon btn-lg" title="Settings"><svg class="icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Pills -->
+    <div class="section-block">
+      <div class="section-label">Pill Shape</div>
+      <div class="btn-grid">
+        <button class="btn btn-primary btn-pill">Primary Pill</button>
+        <button class="btn btn-outline btn-pill">Outline Pill</button>
+        <button class="btn btn-ghost btn-pill">Ghost Pill</button>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section-block">
+      <div class="section-label">States</div>
+      <div class="btn-grid">
+        <button class="btn btn-primary btn-loading"><span class="btn-text">Loading…</span></button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+        <button class="btn btn-outline" aria-disabled="true">Aria Disabled</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

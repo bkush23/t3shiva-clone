@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../">
-  <title>Counters — Elements — T3Shiva</title>
-  <link rel="stylesheet" href="../css/style.css" />
-</head>
-<body>
-  <div id="navbar"></div>
-  <main id="app" class="container"></main>
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
-
-  <script>window.COMPONENTS_BASE = '../';</script>
-  <script src="../js/components.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const res = await fetch('../components/counters.html');
-      document.getElementById('app').innerHTML = await res.text();
-      if (typeof initScripts === 'function') initScripts();
-    });
-  </script>
-  <script src="../js/script.js"></script>
-</body>
-</html>
+<section class="counters">
+  <div class="container">
+    <div class="counter">
+      <h2>{{c1number}}</h2>
+      <p>{{c1label}}</p>
+    </div>
+    <div class="counter">
+      <h2>{{c2number}}</h2>
+      <p>{{c2label}}</p>
+    </div>
+    <div class="counter">
+      <h2>{{c3number}}</h2>
+      <p>{{c3label}}</p>
+    </div>
+  </div>
+</section>

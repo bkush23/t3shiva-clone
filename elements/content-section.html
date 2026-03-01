@@ -1,26 +1,163 @@
 <!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Section — Elements — T3Shiva</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Section – Element Component</title>
+  <link rel="stylesheet" href="/css/shared.css" />
+  <style>
+    .content-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+      margin-bottom: 80px; padding: 60px 0;
+    }
+    .content-section.reverse { direction: rtl; }
+    .content-section.reverse > * { direction: ltr; }
+
+    .content-section + .content-section { border-top: 1px solid var(--border); }
+
+    .content-visual {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .visual-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    /* Floating badge on visual */
+    .content-badge {
+      position: absolute; bottom: 20px; left: 20px;
+      background: var(--surface); border-radius: 12px;
+      padding: 12px 18px; display: flex; align-items: center; gap: 10px;
+      box-shadow: var(--shadow);
+    }
+    .badge-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--secondary); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:.7} }
+    .badge-text { font-size: 0.8rem; font-weight: 600; }
+    .badge-num  { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; color: var(--secondary); }
+
+    /* Text side */
+    .content-eyebrow {
+      display: inline-block; background: var(--primary-light); color: var(--primary);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .content-heading {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px;
+    }
+    .content-heading span { color: var(--primary); }
+    .content-body { color: var(--text-muted); line-height: 1.75; font-size: 0.95rem; margin-bottom: 28px; }
+
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--text);
+    }
+    .check-list li::before {
+      content: '✓'; flex-shrink: 0; width: 20px; height: 20px;
+      background: var(--primary-light); color: var(--primary);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 800; line-height: 20px; text-align: center;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 500; cursor: pointer;
+      border: 2px solid transparent; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: #3a2fd4; transform: translateY(-1px); }
+    .btn-ghost { border-color: var(--border); color: var(--text); background: transparent; margin-left: 12px; }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .content-section { grid-template-columns: 1fr; gap: 36px; }
+      .content-section.reverse { direction: ltr; }
+    }
+  </style>
 </head>
 <body>
-  <div id="navbar"></div>
-  <main id="app" class="container"></main>
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
+  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">📐 Content Section</span></nav>
+  <div class="demo-wrap">
+    <div class="demo-label">Section</div>
+    <h1 class="demo-title">Content <span>Section</span></h1>
+    <p class="demo-sub">Alternating image/text layouts. Works in any order — swap .reverse class to flip.</p>
 
-  <script>window.COMPONENTS_BASE = '../';</script>
-  <script src="../js/components.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const res = await fetch('../components/content-section.html');
-      document.getElementById('app').innerHTML = await res.text();
-      if (typeof initScripts === 'function') initScripts();
-    });
-  </script>
-  <script src="../js/script.js"></script>
+    <!-- Section 1: Image left, text right -->
+    <div class="content-section">
+      <div class="content-visual">
+        <div class="visual-inner" style="background:linear-gradient(135deg,#e8e6fd,#c4bffa)">🎨</div>
+        <div class="content-badge">
+          <div class="badge-dot"></div>
+          <div><div class="badge-text">Active Users</div><div class="badge-num">12,400+</div></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <div class="content-eyebrow">✦ Design System</div>
+        <h2 class="content-heading">Build faster with a <span>world-class</span> UI kit</h2>
+        <p class="content-body">Stop reinventing the wheel. T3Shiva gives you a battle-tested component library that covers every interface pattern you'll ever need.</p>
+        <ul class="check-list">
+          <li>200+ production-ready components</li>
+          <li>Auto-layout Figma kit included</li>
+          <li>CSS variables for one-click theming</li>
+          <li>Accessible, WCAG 2.1 AA compliant</li>
+        </ul>
+        <div>
+          <a href="#" class="btn btn-primary">Explore Components →</a>
+          <a href="#" class="btn btn-ghost">View Figma Kit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Text left, image right (reversed) -->
+    <div class="content-section reverse">
+      <div class="content-visual">
+        <div class="visual-inner" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">🚀</div>
+        <div class="content-badge" style="left:auto;right:20px">
+          <div class="badge-dot" style="background:#E12B2B"></div>
+          <div><div class="badge-text">Deploy Time</div><div class="badge-num">< 60s</div></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <div class="content-eyebrow">✦ Developer Experience</div>
+        <h2 class="content-heading">From zero to <span>live</span> in under an hour</h2>
+        <p class="content-body">Clone, configure, deploy. T3Shiva is built for developer happiness — clean code, strong types, and zero unexpected abstractions.</p>
+        <ul class="check-list">
+          <li>Next.js App Router with TypeScript</li>
+          <li>One-click Vercel deployment</li>
+          <li>Built-in SEO meta management</li>
+          <li>Hot-reload theme customizer</li>
+        </ul>
+        <div>
+          <a href="#" class="btn btn-primary">Read the Docs →</a>
+          <a href="#" class="btn btn-ghost">GitHub Repo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Image left -->
+    <div class="content-section">
+      <div class="content-visual">
+        <div class="visual-inner" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🌐</div>
+      </div>
+      <div class="content-text">
+        <div class="content-eyebrow">✦ CMS Integration</div>
+        <h2 class="content-heading">Powered by <span>TYPO3</span> — built for scale</h2>
+        <p class="content-body">TYPO3 is the enterprise CMS trusted by governments, banks, and Fortune 500s. T3Shiva gives it a modern React frontend without sacrificing stability.</p>
+        <ul class="check-list">
+          <li>Headless TYPO3 REST API</li>
+          <li>Multi-site and multi-language</li>
+          <li>Role-based content permissions</li>
+        </ul>
+        <div>
+          <a href="#" class="btn btn-primary">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

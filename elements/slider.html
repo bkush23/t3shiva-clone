@@ -1,27 +1,257 @@
 <!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../">
-  <title>Slider — Elements — T3Shiva</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slider – Element Component</title>
+  <link rel="stylesheet" href="/css/shared.css" />
+  <style>
+    .variant-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 16px; }
+    .block { margin-bottom: 60px; }
+
+    /* ── Full Width Slider ── */
+    .slider-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; user-select: none; }
+    .slider-track { display: flex; transition: transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+    .slide {
+      min-width: 100%; position: relative;
+      aspect-ratio: 16/7;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .slide-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .slider-wrap:hover .slide-bg { transform: scale(1.03); }
+
+    .slide-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,18,35,0.75) 0%, rgba(15,18,35,0.1) 70%); }
+    .slide-content { position: relative; z-index: 2; padding: 0 60px; max-width: 580px; }
+    .slide-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+    .slide-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem,3.5vw,2.8rem); font-weight: 800; letter-spacing: -0.03em; color: #fff; line-height: 1.1; margin-bottom: 14px; }
+    .slide-sub { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.65; margin-bottom: 28px; }
+    .slide-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 24px; background: var(--primary); color: #fff;
+      border-radius: 10px; font-size: 0.875rem; font-weight: 500;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .slide-btn:hover { background: #3a2fd4; }
+
+    /* Nav arrows */
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10; width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2); color: #fff;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; transition: background 0.2s;
+    }
+    .slider-arrow:hover { background: rgba(255,255,255,0.25); }
+    .slider-arrow.prev { left: 18px; }
+    .slider-arrow.next { right: 18px; }
+
+    /* Dots */
+    .slider-dots {
+      position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 10;
+    }
+    .slider-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.4); border: none; cursor: pointer;
+      transition: all 0.2s; padding: 0;
+    }
+    .slider-dot.active { background: #fff; width: 24px; border-radius: 4px; }
+
+    /* Progress bar */
+    .slider-progress {
+      position: absolute; bottom: 0; left: 0; height: 3px;
+      background: var(--primary); z-index: 10;
+      transition: width 0s linear;
+    }
+
+    /* ── Thumbnail Slider ── */
+    .thumb-slider { border-radius: var(--radius-lg); overflow: hidden; }
+    .thumb-main { position: relative; }
+    .thumb-main .slider-track .slide { aspect-ratio: 16/6; }
+    .thumb-strip {
+      display: flex; gap: 8px; padding: 10px;
+      background: #1a1e2e;
+    }
+    .thumb-item {
+      flex: 1; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
+      cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s;
+      opacity: 0.55; transition: opacity 0.2s, border-color 0.2s;
+    }
+    .thumb-item.active { border-color: var(--primary); opacity: 1; }
+    .thumb-item div { width: 100%; height: 100%; }
+  </style>
 </head>
 <body>
-  <div id="navbar"></div>
-  <main id="app" class="container"></main>
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
+  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">🖼 Slider</span></nav>
+  <div class="demo-wrap">
+    <div class="demo-label">UI Element</div>
+    <h1 class="demo-title">Slider <span>Component</span></h1>
+    <p class="demo-sub">Full-width hero slider with autoplay, arrows, dots, and a thumbnail strip variant.</p>
 
-  <script>window.COMPONENTS_BASE = '../';</script>
-  <script src="../js/components.js"></script>
+    <!-- Full width slider -->
+    <div class="block">
+      <div class="variant-label">Full Width Slider</div>
+      <div class="slider-wrap" id="mainSlider">
+        <div class="slider-track" id="mainTrack">
+          <div class="slide">
+            <div class="slide-bg" style="background:linear-gradient(135deg,#1a1040 0%,#2d1b6e 50%,#473BF0 100%)"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <div class="slide-eyebrow">✦ New Release</div>
+              <h2 class="slide-title">Build stunning sites faster than ever</h2>
+              <p class="slide-sub">T3Shiva gives you a production-ready component library to ship beautiful web experiences in record time.</p>
+              <a href="#" class="slide-btn">Get Started →</a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-bg" style="background:linear-gradient(135deg,#0a2e1a 0%,#027B3F 60%,#10b981 100%)"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <div class="slide-eyebrow">✦ Pro Template</div>
+              <h2 class="slide-title">Enterprise-grade CMS with modern React</h2>
+              <p class="slide-sub">Combine the reliability of TYPO3 with the speed of a Next.js frontend. Best of both worlds.</p>
+              <a href="#" class="slide-btn">Explore Templates →</a>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-bg" style="background:linear-gradient(135deg,#2e0a0a 0%,#7c1d1d 50%,#E12B2B 100%)"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <div class="slide-eyebrow">✦ New Feature</div>
+              <h2 class="slide-title">Live theme customizer — no rebuild needed</h2>
+              <p class="slide-sub">Swap colors, fonts, and layouts in real time. Your clients will love the instant preview.</p>
+              <a href="#" class="slide-btn">Watch Demo →</a>
+            </div>
+          </div>
+        </div>
+        <button class="slider-arrow prev" id="mainPrev">‹</button>
+        <button class="slider-arrow next" id="mainNext">›</button>
+        <div class="slider-dots" id="mainDots"></div>
+        <div class="slider-progress" id="mainProgress"></div>
+      </div>
+    </div>
+
+    <!-- Thumbnail slider -->
+    <div class="block">
+      <div class="variant-label">Thumbnail Strip</div>
+      <div class="thumb-slider" id="thumbSlider">
+        <div class="thumb-main">
+          <div class="slider-wrap">
+            <div class="slider-track" id="thumbTrack">
+              <div class="slide">
+                <div class="slide-bg" style="background:linear-gradient(135deg,#1a1040,#473BF0)"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content" style="padding:0 40px">
+                  <h2 class="slide-title" style="font-size:clamp(1.2rem,2.5vw,2rem)">Brand Identity</h2>
+                  <p class="slide-sub" style="font-size:0.85rem">Cohesive visual systems for modern companies.</p>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="slide-bg" style="background:linear-gradient(135deg,#0a2e1a,#027B3F)"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content" style="padding:0 40px">
+                  <h2 class="slide-title" style="font-size:clamp(1.2rem,2.5vw,2rem)">Web Design</h2>
+                  <p class="slide-sub" style="font-size:0.85rem">Pixel-perfect layouts built for conversion.</p>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="slide-bg" style="background:linear-gradient(135deg,#2e1a0a,#f97316)"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content" style="padding:0 40px">
+                  <h2 class="slide-title" style="font-size:clamp(1.2rem,2.5vw,2rem)">Motion Design</h2>
+                  <p class="slide-sub" style="font-size:0.85rem">Micro-interactions that delight users.</p>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="slide-bg" style="background:linear-gradient(135deg,#0a1e2e,#0ea5e9)"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content" style="padding:0 40px">
+                  <h2 class="slide-title" style="font-size:clamp(1.2rem,2.5vw,2rem)">Product Strategy</h2>
+                  <p class="slide-sub" style="font-size:0.85rem">From zero to launch with a clear roadmap.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumb-strip" id="thumbStrip">
+          <div class="thumb-item active" data-index="0"><div style="background:linear-gradient(135deg,#1a1040,#473BF0)"></div></div>
+          <div class="thumb-item" data-index="1"><div style="background:linear-gradient(135deg,#0a2e1a,#027B3F)"></div></div>
+          <div class="thumb-item" data-index="2"><div style="background:linear-gradient(135deg,#2e1a0a,#f97316)"></div></div>
+          <div class="thumb-item" data-index="3"><div style="background:linear-gradient(135deg,#0a1e2e,#0ea5e9)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const res = await fetch('../components/slider.html');
-      document.getElementById('app').innerHTML = await res.text();
-      if (typeof initScripts === 'function') initScripts();
-    });
+    // ── Main slider ──────────────────────────────
+    function initSlider({ trackId, prevId, nextId, dotsId, progressId, autoplayMs = 5000 }) {
+      const track    = document.getElementById(trackId);
+      const slides   = track.children;
+      const total    = slides.length;
+      const dotsEl   = dotsId   ? document.getElementById(dotsId)   : null;
+      const progress = progressId ? document.getElementById(progressId) : null;
+      let current = 0, timer, startX, dragging = false;
+
+      if (dotsEl) {
+        for (let i = 0; i < total; i++) {
+          const d = document.createElement('button');
+          d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+          d.addEventListener('click', () => go(i));
+          dotsEl.appendChild(d);
+        }
+      }
+
+      function go(i) {
+        current = (i + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        if (dotsEl) dotsEl.querySelectorAll('.slider-dot').forEach((d,idx) => d.classList.toggle('active', idx === current));
+        resetProgress();
+      }
+
+      function resetProgress() {
+        if (!progress) return;
+        progress.style.transition = 'none';
+        progress.style.width = '0%';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            progress.style.transition = `width ${autoplayMs}ms linear`;
+            progress.style.width = '100%';
+          });
+        });
+      }
+
+      if (prevId) document.getElementById(prevId).onclick = () => { go(current - 1); clearInterval(timer); startAuto(); };
+      if (nextId) document.getElementById(nextId).onclick = () => { go(current + 1); clearInterval(timer); startAuto(); };
+
+      function startAuto() { timer = setInterval(() => go(current + 1), autoplayMs); resetProgress(); }
+      startAuto();
+
+      // Touch/drag
+      track.addEventListener('mousedown', e => { startX = e.clientX; dragging = true; });
+      track.addEventListener('mouseup',   e => { if (dragging) { const dx = e.clientX - startX; if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1)); dragging = false; } });
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1)); });
+    }
+
+    initSlider({ trackId:'mainTrack', prevId:'mainPrev', nextId:'mainNext', dotsId:'mainDots', progressId:'mainProgress', autoplayMs:5000 });
+
+    // ── Thumb slider ─────────────────────────────
+    const thumbTrack = document.getElementById('thumbTrack');
+    const thumbItems = document.querySelectorAll('#thumbStrip .thumb-item');
+    let thumbCurrent = 0;
+    function goThumb(i) {
+      thumbCurrent = i;
+      thumbTrack.style.transform = `translateX(-${i * 100}%)`;
+      thumbItems.forEach((t,idx) => t.classList.toggle('active', idx === i));
+    }
+    thumbItems.forEach(item => item.addEventListener('click', () => goThumb(+item.dataset.index)));
+    setInterval(() => goThumb((thumbCurrent + 1) % thumbItems.length), 4000);
   </script>
-  <script src="../js/script.js"></script>
 </body>
 </html>

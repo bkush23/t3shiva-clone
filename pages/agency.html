@@ -1,23 +1,35 @@
-<!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agency Demo — T3Shiva</title>
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-<body>
-  <div id="navbar"></div>
-  <main id="app"></main>
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
+<div data-include="../elements/hero.html"
+     data-title="We Build Digital Brands"
+     data-subtitle="Creative solutions for modern businesses."
+     data-buttonText="Our Work"
+     data-buttonLink="#portfolio"
+     data-image="../images/hero-banner.png">
+</div>
 
-  <script src="/js/components.js"></script>
-  <script src="/js/layoutEngine.js"></script>
-  <!-- <script src="/js/script.js"></script> -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => loadDemo('agency'));
-  </script>
-  <script src="/js/script.js"></script>
-</body>
-</html>
+<div data-include="../elements/teaser.html"
+     data-t1title="Branding"
+     data-t1desc="Strategic brand identity."
+     data-t2title="Web Design"
+     data-t2desc="High converting websites."
+     data-t3title="Marketing"
+     data-t3desc="Growth focused campaigns.">
+</div>
+
+<div data-include="../elements/process.html"
+     data-step1="Research"
+     data-step2="Design"
+     data-step3="Launch">
+</div>
+
+<div data-include="../elements/gallery.html"
+     data-g1="../images/gallery-image-01.jpg"
+     data-g2="../images/gallery-image-02.jpg"
+     data-g3="../images/gallery-image-03.jpg"
+     data-g4="../images/gallery-image-04.jpg">
+</div>
+
+<div data-include="../elements/cta.html"
+     data-ctaText="Let’s Build Something Amazing"
+     data-ctaButton="Contact Us"
+     data-ctaLink="#">
+</div>

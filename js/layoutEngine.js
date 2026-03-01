@@ -12,19 +12,19 @@ const demos = {
         "news"
     ],
     agency: ["hero", "services", "features", "testimonials", "cards", "cta"],
-    gym: ["slider", "teaser", "counters", "content-section", "video", "pricing", "testimonials", "process", "gallery", "cta"],
+    gym: ["slider", "hero", "gallery", "testimonials", "", "process", "", "cta"],
     medical: ["slider", "teaser", "counters", "content-section", "video", "pricing", "testimonials", "process", "accordion", "cta"],
     consulting: ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "case-studies", "process", "cta"],
     education: ["slider", "teaser", "counters", "content-section", "video", "pricing", "testimonials", "accordion", "process", "gallery", "cta"],
-    b2b: ["slider", "content-section", "teaser", "counters", "tabs", "testimonials", "case-studies", "video", "accordion", "cta"],
-    "co-working": ["slider", "teaser", "counters", "content-section", "gallery", "pricing", "testimonials", "map", "process", "cta"],
+    b2b: ["slider", "content-section", "teaser", "counters", "tabs" , 	"testimonials" , 	"case-studies" , 	"video" , 	"accordion" , 	"cta"],
+    coworking: ["slider" , 	"teaser" , 	"counters" , 	"content-section" , 	"gallery" , 	"pricing" , 	"testimonials" , 	"map" , 	"process" , 	"cta"],
     ecommerce: ["slider", "cards", "content-section", "counters", "gallery", "testimonials", "pricing", "video", "accordion", "cta"],
-    "job-directory": ["slider", "content-section", "cards", "counters", "tabs", "case-studies", "testimonials", "accordion", "process", "cta"],
-    "mobile-app": ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "accordion", "process", "cta"],
-    "product-landing": ["slider", "content-section", "teaser", "counters", "video", "testimonials", "pricing", "gallery", "accordion", "cta"],
-    "saas-subscription": ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "case-studies", "cta"],
-    "video-conference": ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "process", "cta"],
-    "web-application": ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "case-studies", "accordion", "process", "cta"]
+    jobdirectory: ["slider", "content-section", "cards", "counters", "tabs", "case-studies", "testimonials", "accordion", "process", "cta"],
+    mobileapp: ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "accordion", "process", "cta"],
+    productlanding: ["slider", "content-section", "teaser", "counters", "video", "testimonials", "pricing", "gallery", "accordion", "cta"],
+    saassubscription: ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "case-studies", "cta"],
+    videoconference: ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "process", "cta"],
+    webapplication: ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "case-studies", "accordion", "process", "cta"]
 };
 
 
@@ -66,6 +66,7 @@ async function loadDemo(type = "default") {
         initScripts();
     }
 }
+
 
 function applyDemoSectionOverrides(type, section, sectionEl) {
     if (type === "gym" && section === "slider") {

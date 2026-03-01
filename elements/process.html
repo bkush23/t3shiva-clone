@@ -1,27 +1,150 @@
 <!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../">
-  <title>Process — Elements — T3Shiva</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process – Element Component</title>
+  <link rel="stylesheet" href="/css/shared.css" />
+  <style>
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+    .section-header p { color: var(--text-muted); margin-top: 10px; }
+
+    /* ── Vertical timeline ── */
+    .timeline { position: relative; padding-left: 48px; margin-bottom: 70px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 19px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--primary), transparent);
+    }
+    .timeline-step { position: relative; margin-bottom: 44px; }
+    .timeline-step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      position: absolute; left: -48px; top: 0;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 5px var(--primary-light);
+      flex-shrink: 0;
+    }
+    .step-num.done { background: var(--secondary); box-shadow: 0 0 0 5px #d1fae5; }
+    .step-num.done::after { content: '✓'; }
+
+    .step-body { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .step-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
+    .step-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px;
+    }
+    .tag-blue { background: var(--primary-light); color: var(--primary); }
+    .tag-green { background: #d1fae5; color: var(--secondary); }
+    .tag-orange { background: #fff7ed; color: #ea580c; }
+
+    /* ── Horizontal grid ── */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative; margin-bottom: 60px;
+    }
+    .steps-grid::after {
+      content: ''; position: absolute;
+      top: 36px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--border) 100%);
+      pointer-events: none;
+    }
+    .h-step { padding: 0 16px 0; text-align: center; position: relative; z-index: 1; }
+    .h-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--primary);
+      color: var(--primary); font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .h-step:nth-child(2) .h-num { background: var(--primary); color: #fff; }
+    .h-title { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .h-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+    .h-icon { font-size: 1.5rem; margin-bottom: 10px; }
+
+    .variant-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 24px; }
+  </style>
 </head>
 <body>
-  <div id="navbar"></div>
-  <main id="app" class="container"></main>
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
+  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">🔄 Process</span></nav>
+  <div class="demo-wrap">
+    <div class="demo-label">Section</div>
+    <h1 class="demo-title">Process <span>Component</span></h1>
+    <p class="demo-sub">Vertical timeline and horizontal step grid. Great for onboarding and how-it-works sections.</p>
 
-  <script>window.COMPONENTS_BASE = '../';</script>
-  <script src="../js/components.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const res = await fetch('../components/process.html');
-      document.getElementById('app').innerHTML = await res.text();
-      if (typeof initScripts === 'function') initScripts();
-    });
-  </script>
-  <script src="../js/script.js"></script>
+    <div class="section-header">
+      <h2>How it works</h2>
+      <p>From setup to launch in four simple steps</p>
+    </div>
+
+    <div class="variant-label">Horizontal Steps</div>
+    <div class="steps-grid">
+      <div class="h-step">
+        <div class="h-num">01</div>
+        <div class="h-icon">📦</div>
+        <div class="h-title">Install</div>
+        <div class="h-desc">Clone the repo and run npm install to get all dependencies set up.</div>
+      </div>
+      <div class="h-step">
+        <div class="h-num">02</div>
+        <div class="h-icon">⚙️</div>
+        <div class="h-title">Configure</div>
+        <div class="h-desc">Set your brand colours, fonts, and CMS endpoint in the config file.</div>
+      </div>
+      <div class="h-step">
+        <div class="h-num">03</div>
+        <div class="h-icon">🎨</div>
+        <div class="h-title">Customize</div>
+        <div class="h-desc">Drop in your content and adjust components with CSS variables.</div>
+      </div>
+      <div class="h-step">
+        <div class="h-num">04</div>
+        <div class="h-icon">🚀</div>
+        <div class="h-title">Deploy</div>
+        <div class="h-desc">Push to GitHub and Vercel auto-deploys with preview URLs.</div>
+      </div>
+    </div>
+
+    <div class="variant-label" style="margin-top:16px">Vertical Timeline</div>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="step-num done">1</div>
+        <div class="step-body">
+          <div class="step-title">Project Kickoff</div>
+          <div class="step-desc">Define scope, choose technology stack, and align on design direction with stakeholders. Set up the development environment and repository.</div>
+          <span class="step-tag tag-green">Completed</span>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-num done">2</div>
+        <div class="step-body">
+          <div class="step-title">Design & Prototyping</div>
+          <div class="step-desc">Create wireframes and high-fidelity mockups in Figma. Validate with user testing sessions before moving to code.</div>
+          <span class="step-tag tag-green">Completed</span>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Development Sprint</div>
+          <div class="step-desc">Build out all components and integrate with the CMS backend. Weekly progress reviews and staging deployments for client sign-off.</div>
+          <span class="step-tag tag-blue">In Progress</span>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-num" style="background:var(--border);color:var(--text-muted);box-shadow:none">4</div>
+        <div class="step-body">
+          <div class="step-title">QA & Launch</div>
+          <div class="step-desc">Cross-browser testing, performance audit, accessibility review. Go-live with monitoring and a 30-day support window.</div>
+          <span class="step-tag tag-orange">Upcoming</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,38 +1,191 @@
 <!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../">
-  <title>Gallery — Elements — T3Shiva</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Element Component</title>
+  <link rel="stylesheet" href="/css/shared.css" />
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: zoom-in;
+      position: relative;
+      background: var(--border);
+    }
+    .gallery-item:nth-child(3n+1) { grid-row: span 2; aspect-ratio: unset; }
+
+    .gallery-item .thumb {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover .thumb { transform: scale(1.06); }
+
+    .gallery-item .overlay {
+      position: absolute; inset: 0;
+      background: rgba(20,24,40,0); display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .gallery-item:hover .overlay { background: rgba(20,24,40,0.35); }
+    .overlay svg { color: #fff; opacity: 0; transform: scale(0.7); transition: opacity 0.3s, transform 0.3s; }
+    .gallery-item:hover .overlay svg { opacity: 1; transform: scale(1); }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,12,20,0.95);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-width: 88vw; max-height: 85vh;
+      border-radius: var(--radius); object-fit: contain;
+      transform: scale(0.9); transition: transform 0.3s;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    .lightbox.open img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 28px;
+      background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
+      width: 44px; height: 44px; cursor: pointer; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+    .lightbox-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
+      width: 48px; height: 48px; cursor: pointer; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 2;
+    }
+    .lightbox-arrow:hover { background: rgba(255,255,255,0.2); }
+    .lightbox-arrow.prev { left: 24px; }
+    .lightbox-arrow.next { right: 24px; }
+    .lightbox-caption {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.6); font-size: 0.85rem; white-space: nowrap;
+    }
+
+    /* Color swatches used as placeholder images */
+    .swatch { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; }
+    .s1 { background: linear-gradient(135deg,#6366f1,#8b5cf6); }
+    .s2 { background: linear-gradient(135deg,#0ea5e9,#06b6d4); }
+    .s3 { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+    .s4 { background: linear-gradient(135deg,#10b981,#06b6d4); }
+    .s5 { background: linear-gradient(135deg,#ec4899,#f43f5e); }
+    .s6 { background: linear-gradient(135deg,#8b5cf6,#6366f1); }
+    .s7 { background: linear-gradient(135deg,#f97316,#f59e0b); }
+    .s8 { background: linear-gradient(135deg,#14b8a6,#22c55e); }
+    .s9 { background: linear-gradient(135deg,#3b82f6,#6366f1); }
+  </style>
 </head>
-
 <body>
+  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">🖼️ Gallery</span></nav>
+  <div class="demo-wrap">
+    <div class="demo-label">UI Element</div>
+    <h1 class="demo-title">Gallery <span>Component</span></h1>
+    <p class="demo-sub">Masonry-style grid with lightbox, keyboard navigation, and smooth zoom.</p>
 
-  <div id="navbar"></div>
+    <div class="gallery" id="gallery">
+      <div class="gallery-item" data-index="0" tabindex="0" role="button" aria-label="Open image 1">
+        <div class="thumb"><div class="swatch s1">Abstract I</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="1" tabindex="0" role="button" aria-label="Open image 2">
+        <div class="thumb"><div class="swatch s2">Skyline II</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="2" tabindex="0" role="button" aria-label="Open image 3">
+        <div class="thumb"><div class="swatch s3">Sunset III</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="3" tabindex="0" role="button" aria-label="Open image 4">
+        <div class="thumb"><div class="swatch s4">Forest IV</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="4" tabindex="0" role="button" aria-label="Open image 5">
+        <div class="thumb"><div class="swatch s5">Rose V</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="5" tabindex="0" role="button" aria-label="Open image 6">
+        <div class="thumb"><div class="swatch s6">Violet VI</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="6" tabindex="0" role="button" aria-label="Open image 7">
+        <div class="thumb"><div class="swatch s7">Ember VII</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="7" tabindex="0" role="button" aria-label="Open image 8">
+        <div class="thumb"><div class="swatch s8">Teal VIII</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item" data-index="8" tabindex="0" role="button" aria-label="Open image 9">
+        <div class="thumb"><div class="swatch s9">Ocean IX</div></div>
+        <div class="overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6m0 0v6m0-6l-7 7M9 21H3m0 0v-6m0 6l7-7"/></svg></div>
+      </div>
+    </div>
+  </div>
 
-  <main id="app" class="container"></main>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lightbox-arrow prev" id="lbPrev" aria-label="Previous">‹</button>
+    <div id="lbContent" style="width:600px;max-width:88vw;height:400px;max-height:85vh;border-radius:12px;overflow:hidden;">
+      <div id="lbSwatch" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:1.4rem;font-weight:700;"></div>
+    </div>
+    <button class="lightbox-arrow next" id="lbNext" aria-label="Next">›</button>
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
 
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
-
-  <script>window.COMPONENTS_BASE = '../';</script>
-  <script src="../js/components.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        const res = await fetch('../components/gallery.html');
-        const html = await res.text();
-        document.getElementById('app').innerHTML = html;
-        if (typeof initScripts === 'function') initScripts();
-      } catch (e) {
-        console.error('Failed to load gallery component', e);
-      }
+    const items = document.querySelectorAll('.gallery-item');
+    const lb = document.getElementById('lightbox');
+    const lbSwatch = document.getElementById('lbSwatch');
+    const lbCaption = document.getElementById('lbCaption');
+    let current = 0;
+    const total = items.length;
+
+    const swatchClasses = ['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+    const labels = ['Abstract I','Skyline II','Sunset III','Forest IV','Rose V','Violet VI','Ember VII','Teal VIII','Ocean IX'];
+
+    function open(i) {
+      current = i;
+      lbSwatch.className = 'swatch ' + swatchClasses[i];
+      lbSwatch.textContent = labels[i];
+      lbCaption.textContent = (i+1) + ' / ' + total;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function prev() { open((current - 1 + total) % total); }
+    function next() { open((current + 1) % total); }
+
+    items.forEach(item => {
+      item.addEventListener('click', () => open(+item.dataset.index));
+      item.addEventListener('keydown', e => e.key === 'Enter' && open(+item.dataset.index));
+    });
+
+    document.getElementById('lbClose').onclick = close;
+    document.getElementById('lbPrev').onclick = prev;
+    document.getElementById('lbNext').onclick = next;
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
     });
   </script>
-  <script src="../js/script.js"></script>
 </body>
-
 </html>

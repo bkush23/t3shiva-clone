@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../">
-  <title>Teaser — Elements — T3Shiva</title>
-  <link rel="stylesheet" href="../css/style.css" />
-</head>
-<body>
-  <div id="navbar"></div>
-  <main id="app" class="container"></main>
-  <div id="footer"></div>
-  <div id="theme-customizer"></div>
-
-  <script>window.COMPONENTS_BASE = '../';</script>
-  <script src="../js/components.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const res = await fetch('../components/teaser.html');
-      document.getElementById('app').innerHTML = await res.text();
-      if (typeof initScripts === 'function') initScripts();
-    });
-  </script>
-  <script src="../js/script.js"></script>
-</body>
-</html>
+<section class="teasers">
+  <div class="container">
+    <div class="teaser">
+      <h3>{{t1title}}</h3>
+      <p>{{t1desc}}</p>
+    </div>
+    <div class="teaser">
+      <h3>{{t2title}}</h3>
+      <p>{{t2desc}}</p>
+    </div>
+    <div class="teaser">
+      <h3>{{t3title}}</h3>
+      <p>{{t3desc}}</p>
+    </div>
+  </div>
+</section>
