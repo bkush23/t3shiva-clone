@@ -1,172 +1,105 @@
-//hero
-
-function renderHero(id, props) {
-  document.getElementById(id).innerHTML = `
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>${props.title}</h1>
-          <p>${props.subtitle}</p>
-          <a href="${props.buttonLink || '#'}" class="btn">
-            ${props.buttonText}
-          </a>
-        </div>
-        <div class="hero-image">
-          <img src="${props.image}" alt="">
-        </div>
-      </div>
-    </section>
-  `;
-}
-
-//teaser
-
-function renderHero(id, props) {
-  document.getElementById(id).innerHTML = `
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>${props.title}</h1>
-          <p>${props.subtitle}</p>
-          <a href="${props.buttonLink || '#'}" class="btn">
-            ${props.buttonText}
-          </a>
-        </div>
-        <div class="hero-image">
-          <img src="${props.image}" alt="">
-        </div>
-      </div>
-    </section>
-  `;
-}
-
-//counters
-
-function renderTeaser(id, items) {
-  const html = items.map(item => `
-    <div class="teaser-card">
-      <h3>${item.title}</h3>
-      <p>${item.desc}</p>
+const COMPONENTS_BASE = window.COMPONENTS_BASE || "";
+const CUSTOMIZER_FALLBACK = `
+  <button id="customizerToggle" class="customizer-toggle" aria-label="Open customizer">
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
+    </svg>
+  </button>
+  <aside id="customizer" class="customizer">
+    <h2>Theme Settings <button id="customizerClose" aria-label="Close customizer">&times;</button></h2>
+    <div class="c-section">
+      <h3>Colors</h3>
+      <div class="color-row"><span>Primary</span><input type="color" id="cPrimary" value="#473BF0" /></div>
+      <div class="color-row"><span>Secondary</span><input type="color" id="cSecondary" value="#027B3F" /></div>
+      <div class="color-row"><span>Tertiary</span><input type="color" id="cTertiary" value="#E12B2B" /></div>
+      <div class="color-row"><span>Text</span><input type="color" id="cText" value="#151B2C" /></div>
     </div>
-  `).join("");
-
-  document.getElementById(id).innerHTML = `
-    <section class="teaser container">
-      ${html}
-    </section>
-  `;
-}
-
-//content-section
-
-function renderCounters(id, items) {
-  const html = items.map(item => `
-    <div class="counter-box">
-      <h2>${item.number}</h2>
-      <p>${item.label}</p>
+    <div class="c-section">
+      <h3>Typography</h3>
+      <div class="c-row"><span>Font Size (px)</span><input type="number" id="fontSize" value="16" min="12" max="22" /></div>
+      <div class="c-row"><span>Line Height</span><input type="number" id="lineHeight" value="1.6" min="1" max="2.5" step="0.1" /></div>
     </div>
-  `).join("");
-
-  document.getElementById(id).innerHTML = `
-    <section class="counters container">
-      ${html}
-    </section>
-  `;
-}
-
-//video
-
-function renderVideo(id, props) {
-  document.getElementById(id).innerHTML = `
-    <section class="video-section">
-      <div class="container">
-        <h2>${props.title}</h2>
-        <a href="${props.link}" target="_blank" class="btn">
-          Watch Video
-        </a>
+    <div class="c-section">
+      <h3>Layout</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-layout="wide">Wide</button>
+        <button class="c-btn" data-layout="boxed">Boxed</button>
       </div>
-    </section>
-  `;
-}
-
-//pricing
-
-function renderVideo(id, props) {
-  document.getElementById(id).innerHTML = `
-    <section class="video-section">
-      <div class="container">
-        <h2>${props.title}</h2>
-        <a href="${props.link}" target="_blank" class="btn">
-          Watch Video
-        </a>
+    </div>
+    <div class="c-section">
+      <h3>Header Theme</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-header="light">Light</button>
+        <button class="c-btn" data-header="dark">Dark</button>
       </div>
-    </section>
-  `;
-}
-
-//testimonials
-
-function renderPricing(id, plans) {
-  const html = plans.map(plan => `
-    <div class="pricing-card">
-      <h3>${plan.name}</h3>
-      <h2>${plan.price}</h2>
-      <p>${plan.desc}</p>
-      <button class="btn">Choose Plan</button>
     </div>
-  `).join("");
-
-  document.getElementById(id).innerHTML = `
-    <section class="pricing container">
-      ${html}
-    </section>
-  `;
-}
-
-//process
-
-function renderProcess(id, steps) {
-  const html = steps.map((step, index) => `
-    <div class="process-step">
-      <span>${index + 1}</span>
-      <h3>${step}</h3>
-    </div>
-  `).join("");
-
-  document.getElementById(id).innerHTML = `
-    <section class="process container">
-      ${html}
-    </section>
-  `;
-}
-
-//gallery
-
-function renderGallery(id, images) {
-  const html = images.map(img => `
-    <div class="gallery-item">
-      <img src="${img}" alt="">
-    </div>
-  `).join("");
-
-  document.getElementById(id).innerHTML = `
-    <section class="gallery container">
-      ${html}
-    </section>
-  `;
-}
-
-// cta
-
- function renderCTA(id, props) {
-  document.getElementById(id).innerHTML = `
-    <section class="cta">
-      <div class="container">
-        <h2>${props.text}</h2>
-        <a href="${props.link || '#'}" class="btn">
-          ${props.button}
-        </a>
+    <div class="c-section">
+      <h3>Footer Theme</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-footer="dark">Dark</button>
+        <button class="c-btn" data-footer="light">Light</button>
       </div>
-    </section>
-  `;
+    </div>
+    <div class="c-section">
+      <h3>Alignment</h3>
+      <div class="btn-group">
+        <button class="c-btn active" data-align="left">Left</button>
+        <button class="c-btn" data-align="center">Center</button>
+        <button class="c-btn" data-align="right">Right</button>
+      </div>
+    </div>
+    <div class="c-actions">
+      <button id="applyBtn" class="btn-apply">Submit</button>
+      <button id="resetBtn" class="btn-reset">Reset</button>
+    </div>
+  </aside>
+`;
+
+async function loadComponent(id, file) {
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const normalizedFile = file.replace(/^\/+/, "");
+  const normalizedBase = COMPONENTS_BASE
+    ? COMPONENTS_BASE.replace(/\\/g, "/").replace(/\/?$/, "/")
+    : "";
+
+  const candidates = [
+    normalizedBase + normalizedFile,
+    normalizedFile,
+    "../" + normalizedFile
+  ];
+
+  let html = "";
+  for (const path of candidates) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) continue;
+      html = await res.text();
+      break;
+    } catch (err) {
+      // Try the next path candidate.
+    }
+  }
+
+  if (html) {
+    target.innerHTML = html;
+    return;
+  }
+
+  if (id === "theme-customizer") {
+    target.innerHTML = CUSTOMIZER_FALLBACK;
+  }
 }
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+  await loadComponent("navbar", "components/navbar.html");
+  await loadComponent("footer", "components/footer.html");
+  await loadComponent("theme-customizer", "components/customizer.html");
+
+  
+  if (typeof initScripts === "function") {
+    initScripts();
+  }
+});

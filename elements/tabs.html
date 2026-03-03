@@ -1,155 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tabs – Element Component</title>
-  <link rel="stylesheet" href="/css/shared.css" />
-  <style>
-    .tabs-wrap { margin-bottom: 56px; }
-    .variant-label {
-      font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 16px;
-    }
-
-    /* ── Underline tabs ── */
-    .tabs-list {
-      display: flex; gap: 0; border-bottom: 2px solid var(--border);
-      margin-bottom: 28px; list-style: none;
-    }
-    .tab-btn {
-      padding: 11px 20px; border: none; background: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
-      color: var(--text-muted); border-bottom: 2px solid transparent;
-      margin-bottom: -2px; transition: color 0.2s, border-color 0.2s;
-    }
-    .tab-btn:hover { color: var(--text); }
-    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-
-    /* ── Pill tabs ── */
-    .tabs-list.pill {
-      border-bottom: none; background: #f3f4f6; border-radius: 12px;
-      padding: 5px; gap: 4px; width: fit-content;
-    }
-    .tabs-list.pill .tab-btn {
-      border-bottom: none; border-radius: 9px; padding: 9px 20px;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    }
-    .tabs-list.pill .tab-btn.active {
-      background: var(--surface); color: var(--primary);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .tabs-list.pill .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.5); color: var(--text); }
-
-    /* ── Boxed tabs ── */
-    .tabs-list.boxed {
-      border-bottom: none; gap: 8px;
-    }
-    .tabs-list.boxed .tab-btn {
-      border: 2px solid var(--border); border-radius: 10px; border-bottom: 2px solid var(--border);
-      margin-bottom: 0; color: var(--text-muted); transition: all 0.2s;
-    }
-    .tabs-list.boxed .tab-btn.active {
-      border-color: var(--primary); background: var(--primary-light); color: var(--primary);
-    }
-
-    /* Panels */
-    .tab-panel { display: none; animation: fadeIn 0.25s ease; }
-    .tab-panel.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
-    .panel-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 32px; display: flex;
-      gap: 28px; align-items: flex-start;
-    }
-    .panel-icon { font-size: 2.5rem; flex-shrink: 0; }
-    .panel-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-    .panel-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; }
-    .panel-card ul { color: var(--text-muted); font-size: 0.9rem; line-height: 2; padding-left: 18px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../">
+  <title>Tabs — Elements — T3Shiva</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">🗂️ Tabs</span></nav>
-  <div class="demo-wrap">
-    <div class="demo-label">UI Element</div>
-    <h1 class="demo-title">Tabs <span>Component</span></h1>
-    <p class="demo-sub">Three variants: underline, pill, and boxed — all with animated panel transitions.</p>
+  <div id="navbar"></div>
+  <main id="app" class="container"></main>
+  <div id="footer"></div>
+  <div id="theme-customizer"></div>
 
-    <!-- Underline -->
-    <div class="tabs-wrap" data-tabs>
-      <div class="variant-label">Underline (Default)</div>
-      <ul class="tabs-list" role="tablist">
-        <li><button class="tab-btn active" role="tab" data-target="tab1-design">Design</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab1-develop">Develop</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab1-deploy">Deploy</button></li>
-      </ul>
-      <div id="tab1-design" class="tab-panel active" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">🎨</div><div><h3>Design with Figma</h3><p>Start from our Figma UI kit with 200+ components, auto-layout frames, and token-synced design variables. Build pixel-perfect layouts in hours, not days.</p></div></div>
-      </div>
-      <div id="tab1-develop" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">💻</div><div><h3>Develop with Next.js</h3><p>Each Figma component maps 1:1 to a Next.js component. Type-safe props, zero-config dark mode, and server components out of the box.</p></div></div>
-      </div>
-      <div id="tab1-deploy" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">🚀</div><div><h3>Deploy to Vercel</h3><p>One-click deploy with preview URLs, edge caching, and automatic CI/CD. Your site is live in under 60 seconds.</p></div></div>
-      </div>
-    </div>
-
-    <!-- Pill -->
-    <div class="tabs-wrap" data-tabs>
-      <div class="variant-label">Pill</div>
-      <ul class="tabs-list pill" role="tablist">
-        <li><button class="tab-btn active" role="tab" data-target="tab2-overview">Overview</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab2-features">Features</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab2-pricing">Pricing</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab2-faq">FAQ</button></li>
-      </ul>
-      <div style="margin-top:20px"></div>
-      <div id="tab2-overview" class="tab-panel active" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">📊</div><div><h3>Product Overview</h3><p>T3Shiva is a full-stack template combining the power of TYPO3 CMS with a blazing-fast React frontend. Perfect for agencies and enterprise clients.</p></div></div>
-      </div>
-      <div id="tab2-features" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">⭐</div><div><h3>Key Features</h3><ul><li>12 reusable page sections</li><li>Theme customizer with live preview</li><li>SEO-ready meta management</li><li>Multi-language support</li></ul></div></div>
-      </div>
-      <div id="tab2-pricing" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">💲</div><div><h3>Pricing</h3><p>Free community edition. Pro license from $49/project. Enterprise with SLA from $299/year. See the pricing page for full comparison.</p></div></div>
-      </div>
-      <div id="tab2-faq" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">❓</div><div><h3>FAQ</h3><p>Have questions? Check the documentation or reach out on GitHub Discussions. Community support is free and fast.</p></div></div>
-      </div>
-    </div>
-
-    <!-- Boxed -->
-    <div class="tabs-wrap" data-tabs>
-      <div class="variant-label">Boxed</div>
-      <ul class="tabs-list boxed" role="tablist">
-        <li><button class="tab-btn active" role="tab" data-target="tab3-a">Components</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab3-b">Templates</button></li>
-        <li><button class="tab-btn" role="tab" data-target="tab3-c">Extensions</button></li>
-      </ul>
-      <div style="margin-top:20px"></div>
-      <div id="tab3-a" class="tab-panel active" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">🧩</div><div><h3>12 Components Included</h3><p>Buttons, accordions, tabs, gallery, testimonials, team, content sections, process flows, CTAs, maps, features, and pricing tables.</p></div></div>
-      </div>
-      <div id="tab3-b" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">🖼️</div><div><h3>3 Starter Templates</h3><p>Corporate, Agency, and SaaS starter templates. Each pre-configured with colour tokens, font pairings, and page structures.</p></div></div>
-      </div>
-      <div id="tab3-c" class="tab-panel" role="tabpanel">
-        <div class="panel-card"><div class="panel-icon">🔌</div><div><h3>TYPO3 Extensions</h3><p>Native TYPO3 extensions for news, events, and forms. Fully integrated with the React frontend via REST API.</p></div></div>
-      </div>
-    </div>
-  </div>
-
+  <script>window.COMPONENTS_BASE = '../';</script>
+  <script src="../js/components.js"></script>
   <script>
-    document.querySelectorAll('[data-tabs]').forEach(tabGroup => {
-      tabGroup.querySelectorAll('[data-target]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          tabGroup.querySelectorAll('[data-target]').forEach(b => b.classList.remove('active'));
-          tabGroup.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-          btn.classList.add('active');
-          document.getElementById(btn.dataset.target).classList.add('active');
-        });
-      });
+    document.addEventListener('DOMContentLoaded', async () => {
+      const res = await fetch('../components/tabs.html');
+      document.getElementById('app').innerHTML = await res.text();
+      if (typeof initScripts === 'function') initScripts();
     });
   </script>
+  <script src="../js/script.js"></script>
 </body>
 </html>

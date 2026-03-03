@@ -1,129 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTA – Element Component</title>
-  <link rel="stylesheet" href="shared.css" />
-  <style>
-    .cta-block { margin-bottom: 40px; }
-    .variant-label { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 16px; }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 26px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 500; cursor: pointer;
-      border: 2px solid transparent; text-decoration: none; transition: all 0.2s;
-    }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: #3a2fd4; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(71,59,240,.35); }
-    .btn-outline-white { border-color: rgba(255,255,255,0.5); color: #fff; background: transparent; }
-    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
-    .btn-outline { border-color: var(--primary); color: var(--primary); background: transparent; }
-    .btn-outline:hover { background: var(--primary); color: #fff; }
-    .btn-white { background: #fff; color: var(--primary); }
-    .btn-white:hover { background: #f3f4f6; }
-
-    /* Variant 1: Centered banner */
-    .cta-centered {
-      background: linear-gradient(135deg, var(--primary) 0%, #7c74ff 100%);
-      border-radius: var(--radius-lg); padding: 64px 40px;
-      text-align: center; color: #fff; position: relative; overflow: hidden;
-    }
-    .cta-centered::before {
-      content: ''; position: absolute; top: -60px; right: -60px;
-      width: 220px; height: 220px; border-radius: 50%;
-      background: rgba(255,255,255,0.07);
-    }
-    .cta-centered::after {
-      content: ''; position: absolute; bottom: -80px; left: -40px;
-      width: 280px; height: 280px; border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-    }
-    .cta-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 14px; }
-    .cta-heading { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
-    .cta-sub { opacity: 0.8; font-size: 1rem; max-width: 480px; margin: 0 auto 32px; line-height: 1.65; }
-    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    /* Variant 2: Split left/right */
-    .cta-split {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 52px 52px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px;
-    }
-    .cta-split-text .cta-heading { color: var(--text); font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
-    .cta-split-text .cta-heading span { color: var(--primary); }
-    .cta-split-text .cta-sub { color: var(--text-muted); font-size: 0.92rem; line-height: 1.65; margin: 0; max-width: 380px; }
-    .cta-split-actions { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
-
-    /* Variant 3: Dark */
-    .cta-dark {
-      background: var(--text); border-radius: var(--radius-lg);
-      padding: 56px 44px; text-align: center; color: #fff; position: relative; overflow: hidden;
-    }
-    .cta-dark .cta-heading { color: #fff; }
-    .cta-dark .cta-sub { color: rgba(255,255,255,0.6); }
-    .cta-dark .grid-bg {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    .cta-dark > * { position: relative; z-index: 1; }
-
-    @media (max-width: 640px) {
-      .cta-split { flex-direction: column; text-align: center; }
-      .cta-split-actions { justify-content: center; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../">
+  <title>CTA — Elements — T3Shiva</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">📣 CTA</span></nav>
-  <div class="demo-wrap">
-    <div class="demo-label">Section</div>
-    <h1 class="demo-title">CTA <span>Component</span></h1>
-    <p class="demo-sub">Three call-to-action variants: centered gradient, split layout, and dark with grid texture.</p>
+  <div id="navbar"></div>
+  <main id="app" class="container"></main>
+  <div id="footer"></div>
+  <div id="theme-customizer"></div>
 
-    <div class="cta-block">
-      <div class="variant-label">Centered Gradient</div>
-      <div class="cta-centered">
-        <div class="cta-eyebrow">✦ Start for free</div>
-        <h2 class="cta-heading">Ready to build something beautiful?</h2>
-        <p class="cta-sub">Join 12,000+ developers using T3Shiva to ship world-class web experiences faster than ever before.</p>
-        <div class="cta-btns">
-          <a href="#" class="btn btn-white">Get Started Free →</a>
-          <a href="#" class="btn btn-outline-white">View Demo</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="cta-block">
-      <div class="variant-label">Split Layout</div>
-      <div class="cta-split">
-        <div class="cta-split-text">
-          <h2 class="cta-heading">Take your project to <span>the next level</span></h2>
-          <p class="cta-sub">Upgrade to Pro and unlock unlimited projects, priority support, and the full Figma UI kit.</p>
-        </div>
-        <div class="cta-split-actions">
-          <a href="#" class="btn btn-primary">Upgrade to Pro</a>
-          <a href="#" class="btn btn-outline">Compare Plans</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="cta-block">
-      <div class="variant-label">Dark with Grid</div>
-      <div class="cta-dark">
-        <div class="grid-bg"></div>
-        <div class="cta-eyebrow" style="color:rgba(255,255,255,0.5)">✦ Enterprise ready</div>
-        <h2 class="cta-heading">Scale with confidence</h2>
-        <p class="cta-sub">SLA-backed hosting, dedicated support, and GDPR-compliant infrastructure built for enterprise teams.</p>
-        <div class="cta-btns">
-          <a href="#" class="btn btn-primary">Talk to Sales</a>
-          <a href="#" class="btn btn-outline-white">Download Brochure</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <script>window.COMPONENTS_BASE = '../';</script>
+  <script src="../js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const res = await fetch('../components/cta.html');
+      document.getElementById('app').innerHTML = await res.text();
+      if (typeof initScripts === 'function') initScripts();
+    });
+  </script>
+  <script src="../js/script.js"></script>
 </body>
 </html>

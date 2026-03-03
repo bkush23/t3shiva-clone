@@ -1,176 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accordion – Element Component</title>
-  <link rel="stylesheet" href="/css/shared.css" />
-  <style>
-    .accordion { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 40px; }
-    .accordion-item { border-bottom: 1px solid var(--border); }
-    .accordion-item:last-child { border-bottom: none; }
-
-    .accordion-trigger {
-      width: 100%; display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 24px; background: var(--surface); border: none; cursor: pointer;
-      text-align: left; gap: 16px;
-      transition: background 0.2s;
-    }
-    .accordion-trigger:hover { background: #fafafa; }
-    .accordion-trigger.open { background: #f8f8ff; }
-
-    .accordion-trigger-text {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.97rem; font-weight: 700; color: var(--text);
-    }
-    .accordion-trigger.open .accordion-trigger-text { color: var(--primary); }
-
-    .accordion-icon {
-      width: 28px; height: 28px; border-radius: 8px;
-      background: var(--border); display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: background 0.2s, transform 0.3s;
-    }
-    .accordion-trigger.open .accordion-icon { background: var(--primary); transform: rotate(45deg); }
-    .accordion-icon svg { width: 14px; height: 14px; color: var(--text-muted); transition: color 0.2s; }
-    .accordion-trigger.open .accordion-icon svg { color: #fff; }
-
-    .accordion-body {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
-      background: var(--surface);
-    }
-    .accordion-body.open { max-height: 400px; }
-
-    .accordion-content {
-      padding: 0 24px 20px;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.7;
-    }
-
-    /* Icon variant */
-    .accordion.icon-left .accordion-trigger { gap: 14px; }
-    .accordion.icon-left .accordion-emoji {
-      font-size: 1.3rem; flex-shrink: 0;
-    }
-    .accordion.icon-left .accordion-trigger-text { flex: 1; }
-
-    /* Separated variant */
-    .accordion.separated { border: none; gap: 10px; display: flex; flex-direction: column; }
-    .accordion.separated .accordion-item {
-      border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .accordion.separated .accordion-item .accordion-body { border-top: 1px solid var(--border); }
-
-    .variant-label {
-      font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 14px;
-    }
-    .block { margin-bottom: 50px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../">
+  <title>Accordion — Elements — T3Shiva</title>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <nav class="back-nav"><a href="index.html">← Back</a><span class="tag">🪗 Accordion</span></nav>
-  <div class="demo-wrap">
-    <div class="demo-label">UI Element</div>
-    <h1 class="demo-title">Accordion <span>Component</span></h1>
-    <p class="demo-sub">Smooth animated FAQ panels. Supports icon-left and separated variants.</p>
+  <div id="navbar"></div>
+  <main id="app" class="container"></main>
+  <div id="footer"></div>
+  <div id="theme-customizer"></div>
 
-    <div class="block">
-      <div class="variant-label">Default</div>
-      <div class="accordion" data-accordion>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">What is T3Shiva?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">T3Shiva is a modern TYPO3 React template designed for fast, beautiful web experiences. It provides a full component library to speed up development.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">Is it free to use?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">Yes, the core component library is open source. Premium templates and extended features are available with a paid license.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">What technologies does it use?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">T3Shiva is built on Next.js, TypeScript, and Tailwind CSS with a TYPO3 CMS backend. All components are reusable and customizable.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">Can I use it for commercial projects?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">Absolutely. Commercial use is permitted under the standard license. Please refer to the LICENSE file in the repository for full terms.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="variant-label">Separated</div>
-      <div class="accordion separated" data-accordion>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">How do I install the components?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">Copy the HTML file into your project, link shared.css, and optionally import the Google Fonts. No build tools required.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">Does it support dark mode?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">Yes. Each component uses CSS custom properties (variables) making it trivial to switch to a dark theme by redefining the root values.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger" data-trigger>
-            <span class="accordion-trigger-text">Is keyboard navigation supported?</span>
-            <span class="accordion-icon"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="accordion-body" data-body>
-            <div class="accordion-content">Yes. All interactive triggers are native buttons, so they are fully keyboard-accessible and work with screen readers out of the box.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <script>window.COMPONENTS_BASE = '../';</script>
+  <script src="../js/components.js"></script>
   <script>
-    document.querySelectorAll('[data-accordion]').forEach(accordion => {
-      accordion.querySelectorAll('[data-trigger]').forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const body = trigger.nextElementSibling;
-          const isOpen = trigger.classList.contains('open');
-          // Close all in same accordion
-          accordion.querySelectorAll('[data-trigger]').forEach(t => {
-            t.classList.remove('open');
-            t.nextElementSibling.classList.remove('open');
-          });
-          if (!isOpen) {
-            trigger.classList.add('open');
-            body.classList.add('open');
-          }
-        });
-      });
+    document.addEventListener('DOMContentLoaded', async () => {
+      const res = await fetch('../components/accordion.html');
+      document.getElementById('app').innerHTML = await res.text();
+      if (typeof initScripts === 'function') initScripts();
     });
   </script>
+  <script src="../js/script.js"></script>
 </body>
 </html>

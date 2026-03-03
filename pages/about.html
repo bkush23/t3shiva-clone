@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - T3Shiva 2.0</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+    <div id="navbar"></div>
+
+    <!-- ABOUT SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>About T3 Shiva</h1>
+                <p>T3 Shiva is the ultimate TYPO3 Headless Template crafted with ReactJS & NextJS. We focus on
+                    delivering modern design solutions and lightning-fast performance for our clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    <div id="theme-customizer"></div>
+
+    <!-- We use standard shell loading from layoutEngine but about specifically doesn't need loadDemo because it's mostly static here -->
+    <!-- However, to get the navbar/footer, we need to call loadShellComponents or just loadDemo with no sections -->
+    <script src="/js/pages.js"></script>
+    <script src="/js/layoutEngine.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadShellComponents(); // Just load the navbar/footer/customizer
+        });
+    </script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

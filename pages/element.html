@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Component Demo — T3Shiva</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <main id="app"></main>
+    <div id="footer"></div>
+    <div id="theme-customizer"></div>
+
+    <script src="/js/pages.js"></script>
+    <script src="/js/layoutEngine.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const component = urlParams.get('type') || 'accordion';
+
+            // If the component exists in our demos object as a preset, use it
+            // Otherwise, the engine will attempt to load it as a single element
+            loadDemo('element-' + component);
+        });
+    </script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

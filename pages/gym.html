@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Gym Demo</title>
+<html lang="en" data-header="light" data-footer="dark" data-layout="wide" data-align="left">
 
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/layout.css">
-  <link rel="stylesheet" href="/css/shared.css">
-  <link rel="stylesheet" href="/css/style.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Demo - T3Shiva</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 
-<body>
+<body class="gym-page">
+  <div id="navbar"></div>
+  <main id="app"></main>
+  <div id="footer"></div>
+  <div id="theme-customizer"></div>
 
-  <div data-include="/components/navbar.html"></div>
-
-  <div data-include="/elements/hero.html"
-       data-title="Train Hard. Live Strong."
-       data-subtitle="Build strength and confidence."
-       data-buttonText="Join Now"
-       data-buttonLink="#"
-       data-image="/images/gym-banner-01.jpg">
-  </div>
-
-  <div data-include="/elements/teaser.html"
-       data-t1title="Personal Training"
-       data-t1desc="One-on-one coaching"
-       data-t2title="Group Classes"
-       data-t2desc="HIIT & Yoga"
-       data-t3title="Nutrition"
-       data-t3desc="Custom diet plans">
-  </div>
-
-  <script src="/js/include.js"></script>
-
+  <script src="/js/components.js"></script>
+  <script src="/js/layoutEngine.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => loadDemo('gym'));
+  </script>
+  <script src="/js/script.js"></script>
 </body>
+
 </html>
