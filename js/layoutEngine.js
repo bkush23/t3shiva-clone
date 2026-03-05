@@ -11,39 +11,86 @@ const demos = {
         "cards",
         "news"
     ],
-    agency: ["hero", "services", "features", "testimonials", "cards", "cta"],
+    agency: ["hero", "services", "features", "testimonials_v6", "agency_ourstory", "counters", "features", "cta_agency", "agency_casestudy", "testimonials_v4"],
+    jobdirectory: ["job_directory_hero", "job_directory_brand", "video-section-2", "counters", "tabs", "case-studies", "testimonials", "accordion", "process", "cta"],
     gym: ["slider", "teaser", "counters", "content-section", "video", "pricing", "testimonials", "process", "gallery", "cta"],
     medical: ["slider", "teaser", "counters", "content-section", "video", "pricing", "testimonials", "process", "accordion", "cta"],
     consulting: ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "case-studies", "process", "cta"],
     education: ["slider", "teaser", "counters", "content-section", "video", "pricing", "testimonials", "accordion", "process", "gallery", "cta"],
     b2b: ["slider", "content-section", "teaser", "counters", "tabs", "testimonials", "case-studies", "video", "accordion", "cta"],
-    "co-working": ["slider", "teaser", "counters", "content-section", "gallery", "pricing", "testimonials", "map", "process", "cta"],
+    coworking: ["slider", "teaser", "counters", "content-section", "gallery", "pricing", "testimonials", "map", "process", "cta"],
     ecommerce: ["slider", "cards", "content-section", "counters", "gallery", "testimonials", "pricing", "video", "accordion", "cta"],
-    "job-directory": ["slider", "content-section", "cards", "counters", "tabs", "case-studies", "testimonials", "accordion", "process", "cta"],
-    "mobile-app": ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "accordion", "process", "cta"],
-    "product-landing": ["slider", "content-section", "teaser", "counters", "video", "testimonials", "pricing", "gallery", "accordion", "cta"],
-    "saas-subscription": ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "case-studies", "cta"],
-    "video-conference": ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "process", "cta"],
-    "web-application": ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "case-studies", "accordion", "process", "cta"]
+    mobileapp: ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "accordion", "process", "cta"],
+    productlanding: ["slider", "content-section", "teaser", "counters", "video", "testimonials", "pricing", "gallery", "accordion", "cta"],
+    saassubscription: ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "case-studies", "cta"],
+    videoconference: ["slider", "teaser", "content-section", "counters", "tabs", "video", "testimonials", "pricing", "accordion", "process", "cta"],
+    webapplication: ["slider", "content-section", "teaser", "counters", "tabs", "video", "testimonials", "case-studies", "accordion", "process", "cta"],
+    "elements-testimonials": ["testimonials_v1", "testimonials_v2", "testimonials_v3", "testimonials_v4", "testimonials_v5", "testimonials_v6"]
 };
+
+const testimonialVariants = {
+    default: "testimonials_v1",
+    jobdirectory: "testimonials_v2",
+    gym: "testimonials_v3",
+    medical: "testimonials_v4",
+    consulting: "testimonials_v5",
+    education: "testimonials_v2",
+    b2b: "testimonials_v4",
+    coworking: "testimonials_v5",
+    ecommerce: "testimonials_v1",
+    mobileapp: "testimonials_v2",
+    productlanding: "testimonials_v1",
+    saassubscription: "testimonials_v3",
+    videoconference: "testimonials_v4",
+    webapplication: "testimonials_v5"
+};
+
+const demoTypeAliases = {
+    "job-directory": "jobdirectory",
+    "co-working": "coworking",
+    "mobile-app": "mobileapp",
+    "product-landing": "productlanding",
+    "saas-subscription": "saassubscription",
+    "video-conference": "videoconference",
+    "web-application": "webapplication"
+};
+
+function normalizeDemoType(type) {
+    return demoTypeAliases[type] || type;
+}
+
+function resolveSectionComponent(type, section) {
+    const normalizedType = normalizeDemoType(type);
+    if (section === "testimonials") {
+        return testimonialVariants[normalizedType] || testimonialVariants.default;
+    }
+    return section;
+}
 
 
 // Load selected demo layout
 async function loadDemo(type = "default") {
+    const normalizedType = normalizeDemoType(type);
     const container = document.getElementById("app");
     container.innerHTML = "";
 
-    const layout = demos[type];
+    const layout = demos[normalizedType]
+        || (normalizedType.startsWith("element-") ? [normalizedType.replace("element-", "")] : [normalizedType]);
 
     for (const section of layout) {
         try {
-            console.log("Loading:", section);
+            const componentName = resolveSectionComponent(normalizedType, section);
+            console.log("Loading:", section, "->", componentName);
             const previousCount = container.children.length;
 
-            const response = await fetch(`/components/${section}.html`);
+            // Prefer standard .html files, with a safe fallback for extensionless component files.
+            let response = await fetch(`/components/${componentName}.html`);
+            if (!response.ok) {
+                response = await fetch(`/components/${componentName}`);
+            }
 
             if (!response.ok) {
-                console.error(`Failed to load ${section}.html`, response.status);
+                console.error(`Failed to load component for section: ${section}`, response.status);
                 continue;
             }
 
@@ -53,7 +100,7 @@ async function loadDemo(type = "default") {
             container.insertAdjacentHTML("beforeend", html);
             const insertedSection = container.children[container.children.length - 1];
             if (insertedSection && container.children.length > previousCount) {
-                applyDemoSectionOverrides(type, section, insertedSection);
+                applyDemoSectionOverrides(normalizedType, section, insertedSection);
             }
 
         } catch (error) {
@@ -118,5 +165,3 @@ function applyDemoSectionOverrides(type, section, sectionEl) {
         });
     }
 }
-
-

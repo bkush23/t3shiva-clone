@@ -54,6 +54,12 @@ const pageContent = {
             bgImage: "/images/video-bg.jpg",
             link: "#"
         },
+        "video-section-2": {
+            title: "JOBS BY CATEGORY",
+            subtitle: "With lots of unique blocks, you can easily build a page without coding. Build your next landing page.",
+            bgImage: "/images/l3-video-bg.jpg",
+            link: "#"
+        },
         testimonials: {
             items: [
                 { name: "Diego Morata", title: "Web Developer", text: "OMG! I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.", avatar: "images/avatar-1.jpg" },

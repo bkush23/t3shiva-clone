@@ -160,7 +160,7 @@ function animateCounter(el) {
 // ===============================
 
 function initTestimonials() {
-  const cards = document.querySelectorAll('.testimonial-card');
+  const cards = document.querySelectorAll('.testimonials .testimonial-card');
   if (!cards.length) return;
 
   const observer = new IntersectionObserver((entries, obs) => {
