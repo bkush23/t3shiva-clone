@@ -62,7 +62,7 @@ async function loadComponent(id, file) {
 
   const normalizedFile = file.replace(/^\/+/, "");
   const normalizedBase = COMPONENTS_BASE
-    ? COMPONENTS_BASE.replace(/\\/g, "/").replace(/\/?$/, "/")
+    ? COMPONENTS_BASE.replace(/\\/g, "/").replace(/\/?$/, "../")
     : "";
 
   const candidates = [
@@ -95,10 +95,11 @@ async function loadComponent(id, file) {
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-  await loadComponent("navbar", "/components/navbar.html");
-  await loadComponent("footer", "/components/footer.html");
-  await loadComponent("theme-customizer", "/components/customizer.html");
+  await loadComponent("navbar", "../components/navbar.html");
+  await loadComponent("footer", "../components/footer.html");
+  await loadComponent("theme-customizer", "../components/customizer.html");
 
+  
   
   if (typeof initScripts === "function") {
     initScripts();
