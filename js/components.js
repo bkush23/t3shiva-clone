@@ -1,4 +1,5 @@
-const COMPONENTS_BASE = window.COMPONENTS_BASE || "";
+const components = {};
+const COMPONENTS_BASE = window.COMPONENTS_BASE || "/components/";
 const CUSTOMIZER_FALLBACK = `
   <button id="customizerToggle" class="customizer-toggle" aria-label="Open customizer">
     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -94,12 +95,35 @@ async function loadComponent(id, file) {
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-  await loadComponent("navbar", "components/navbar.html");
-  await loadComponent("footer", "components/footer.html");
-  await loadComponent("theme-customizer", "components/customizer.html");
+  await loadComponent("navbar", "/components/navbar.html");
+  await loadComponent("footer", "/components/footer.html");
+  await loadComponent("theme-customizer", "/components/customizer.html");
 
   
   if (typeof initScripts === "function") {
     initScripts();
   }
-});
+
+  if (typeof renderNews === "function") {
+  renderNews();
+}
+}, 200);
+
+components.featuredJobs = (data) => `
+<section class="featured-jobs container">
+  <div class="section-header">
+    <h2>${data.title}</h2>
+    <p>${data.subtitle}</p>
+  </div>
+
+  <div class="jobs-grid">
+    ${data.items.map(job => `
+      <div class="job-card">
+        <img src="${job.img}" alt="${job.title}">
+        <h3>${job.title}</h3>
+        <p>${job.location}</p>
+      </div>
+    `).join("")}
+  </div>
+</section>
+`;

@@ -13,12 +13,12 @@ function initScripts() {
   // ===============================
 
   const customizerToggle = document.getElementById('customizerToggle');
-  const customizerClose  = document.getElementById('customizerClose');
-  const customizerPanel  = document.getElementById('customizer');
-  const hamburgerBtn     = document.getElementById('hamburgerBtn');
-  const searchBtn        = document.getElementById('searchBtn');
-  const applyBtn         = document.getElementById('applyBtn');
-  const resetBtn         = document.getElementById('resetBtn');
+  const customizerClose = document.getElementById('customizerClose');
+  const customizerPanel = document.getElementById('customizer');
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const searchBtn = document.getElementById('searchBtn');
+  const applyBtn = document.getElementById('applyBtn');
+  const resetBtn = document.getElementById('resetBtn');
 
   bindClickOnce(customizerToggle, () => {
     if (customizerPanel) customizerPanel.classList.toggle('open');
@@ -38,18 +38,31 @@ function initScripts() {
     if (searchInput) searchInput.classList.toggle('open');
   });
 
-  bindClickOnce(applyBtn, () => {
+  function updateStyles() {
     const primary = document.getElementById('cPrimary');
+    const secondary = document.getElementById('cSecondary');
+    const tertiary = document.getElementById('cTertiary');
     const text = document.getElementById('cText');
     const fontSize = document.getElementById('fontSize');
     const lineHeight = document.getElementById('lineHeight');
-    if (!primary || !text || !fontSize || !lineHeight) return;
 
-    root.style.setProperty('--primary',     primary.value);
-    root.style.setProperty('--text',        text.value);
-    root.style.setProperty('--font-size',   fontSize.value + 'px');
-    root.style.setProperty('--line-height', lineHeight.value);
+    if (primary) root.style.setProperty('--primary', primary.value);
+    if (secondary) root.style.setProperty('--secondary', secondary.value);
+    if (tertiary) root.style.setProperty('--tertiary', tertiary.value);
+    if (text) root.style.setProperty('--text', text.value);
+    if (fontSize) root.style.setProperty('--font-size', fontSize.value + 'px');
+    if (lineHeight) root.style.setProperty('--line-height', lineHeight.value);
+  }
+
+  // Bind live updates (Set OnChange/OnInput)
+  ['cPrimary', 'cSecondary', 'cTertiary', 'cText', 'fontSize', 'lineHeight'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', updateStyles);
+    }
   });
+
+  bindClickOnce(applyBtn, updateStyles);
 
   bindClickOnce(resetBtn, resetCustomizer);
 
@@ -106,6 +119,8 @@ function initScripts() {
 
 function resetCustomizer() {
   root.style.setProperty('--primary', '#473BF0');
+  root.style.setProperty('--secondary', '#027B3F');
+  root.style.setProperty('--tertiary', '#E12B2B');
   root.style.setProperty('--text', '#151B2C');
   root.style.setProperty('--font-size', '16px');
   root.style.setProperty('--line-height', '1.6');
@@ -113,7 +128,7 @@ function resetCustomizer() {
   root.dataset.header = 'light';
   root.dataset.footer = 'dark';
   root.dataset.layout = 'wide';
-  root.dataset.align  = 'left';
+  root.dataset.align = 'left';
 }
 
 
@@ -337,3 +352,228 @@ function showVideoModal() {
   const modal = document.getElementById('videoModal');
   modal.classList.add('show');
 }
+
+const featuredJobsData = [
+  {
+    image: "/images/company-1.png",
+    title: "UI/UX Designer",
+    company: "Envato",
+    location: "Remote",
+    type: "Full Time"
+  },
+  {
+    image: "/images/company-2.png",
+    title: "Frontend Developer",
+    company: "Google",
+    location: "USA",
+    type: "Full Time"
+  },
+  {
+    image: "/images/company-3.png",
+    title: "Backend Developer",
+    company: "Microsoft",
+    location: "Canada",
+    type: "Part Time"
+  }
+];
+
+
+const homeNewsData = [
+  {
+    image: "/images/service-1.jpg",
+    date: "Dec 15, 2024",
+    title: "How to build a headless TYPO3 site",
+    text: "Learn the basics of headless CMS and why it's the future of web development."
+  },
+  {
+    image: "/images/service-2.jpg",
+    date: "Jan 10, 2025",
+    title: "React vs Vue: Which one is better?",
+    text: "A comprehensive comparison between two of the most popular frontend frameworks."
+  },
+  {
+    image: "/images/service-3.jpg",
+    date: "Feb 05, 2025",
+    title: "Understanding Next.js Server Components",
+    text: "Dive deep into the new way of building React applications with Server Components."
+  }
+];
+
+const jobNewsData = [
+  {
+    image: "/images/News-1.jpg",
+    date: "Mar 01, 2025",
+    title: "Top IT Jobs in 2025",
+    text: "Discover the fastest growing tech jobs this year, apply now."
+  },
+  {
+    image: "/images/News-2.jpg",
+    date: "Mar 10, 2025",
+    title: "Remote Work Opportunities",
+    text: "Why companies are hiring more remote developers."
+  },
+  {
+    image: "/images/News-3.jpg",
+    date: "Mar 18, 2025",
+    title: "How to Crack Technical Interviews",
+    text: "Important preparation tips for software engineers."
+  }
+];
+
+const educationNewsData = [
+  {
+    image: "/images/News-1.jpg",
+    date: "Mar 01, 2025",
+    title: "Top IT Jobs in 2025",
+    text: "Discover the fastest growing tech jobs this year, apply now."
+  },
+  {
+    image: "/images/News-2.jpg",
+    date: "Mar 10, 2025",
+    title: "Remote Work Opportunities",
+    text: "Why companies are hiring more remote developers."
+  },
+  {
+    image: "/images/News-3.jpg",
+    date: "Mar 18, 2025",
+    title: "How to Crack Technical Interviews",
+    text: "Important preparation tips for software engineers."
+  }
+];
+
+function renderNews(data) {
+
+    if (!data) return;
+    
+
+  const grid = document.getElementById("newsGrid");
+  // console.log("News grid:", grid);
+
+  if (!grid) {
+    setTimeout(renderNews, 300);
+    return;
+  }
+
+  grid.innerHTML = data.map(news => `
+    <div class="news-card">
+      <div class="news-img">
+        <img src="${news.image}" alt="">
+      </div>
+      <div class="news-content">
+        <span class="news-date">${news.date}</span>
+        <h3>${news.title}</h3>
+        <p>${news.text}</p>
+        <a href="#" class="btn-link">Read More →</a>
+      </div>
+    </div>
+  `).join("");
+
+}
+
+function renderJobs(data) {
+  const grid = document.getElementById("jobsGrid");
+  if (!grid) return;
+
+  grid.innerHTML = data.map(job => `
+    <div class="job-card">
+      <div class="job-company">
+        <img src="${job.image}" alt="">
+      </div>
+
+      <div class="job-info">
+        <h3>${job.title}</h3>
+        <p>${job.company}</p>
+        <span>${job.location}</span>
+        <span>${job.type}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function loadPageNews() {
+
+  const path = window.location.pathname;
+
+  if (path.includes("education")) {
+    renderNews(educationNewsData);
+  } else if (path.includes("job")) {
+    renderNews(jobNewsData);
+  } else {
+    renderNews(homeNewsData);
+  }
+
+}
+
+loadPageNews();
+
+function initNews() {
+
+  const grid = document.getElementById("newsGrid");
+
+  if (!grid) {
+    setTimeout(initNews, 100);
+    return;
+  }
+
+  loadPageNews();
+
+}
+
+initNews();
+
+function initJobs() {
+  const grid = document.getElementById("jobsGrid");
+
+  if (!grid) {
+    setTimeout(initJobs, 100);
+    return;
+  }
+
+  renderJobs(featuredJobsData);
+}
+
+initJobs();
+
+const toggle = document.querySelector("#priceToggle");
+
+if(toggle){
+  toggle.addEventListener("change", function(){
+
+    const prices = document.querySelectorAll(".pricing-section .price");
+
+    prices.forEach(price => {
+
+      const monthly = price.dataset.month;
+      const yearly = price.dataset.year;
+
+      if(toggle.checked){
+        price.innerHTML = "$" + yearly + " <span>/yr</span>";
+      }else{
+        price.innerHTML = "$" + monthly + " <span>/mo</span>";
+      }
+
+    });
+
+  });
+}
+
+function initTabs(){
+
+const tabs = document.querySelectorAll(".tab-btn");
+const panels = document.querySelectorAll(".tab-panel");
+
+tabs.forEach(tab=>{
+tab.addEventListener("click",()=>{
+
+tabs.forEach(t=>t.classList.remove("active"));
+panels.forEach(p=>p.classList.remove("active"));
+
+tab.classList.add("active");
+document.getElementById(tab.dataset.tab).classList.add("active");
+
+});
+});
+
+}
+
+document.addEventListener("DOMContentLoaded", initTabs);

@@ -159,6 +159,44 @@ const pageContent = {
                 { title: "Get Hired", desc: "Start today." }
             ]
         },
+        "process-stapes": {
+            title: "Find jobs with 3 easy steps",
+            subtitle: "With lots of unique blocks, you can easily build a page without coding. Build your next landing page.",
+            image: "https://t3-shiva.t3planet.com/fileadmin/ns_theme_t3shiva/Job_Directory/content-img-main.jpg",
+            items: [
+                { title: "Search for a job", desc: "With lots of unique blocks, you can easily build a page without coding." },
+                { title: "Apply within our website", desc: "With lots of unique blocks, you can easily build a page without coding." },
+                { title: "Get interview call", desc: "With lots of unique blocks, you can easily build a page without coding." }
+            ]
+        },
+
+        "featured-jobs": {
+            title: "Featured Jobs",
+            subtitle: "With lots of unique blocks, you can easily build a page without coding.",
+            items: [
+                {
+                    title: "Senior Software Engineer",
+                    location: "New York, USA",
+                    img: "images/job-1.jpg"
+                },
+                {
+                    title: "Product Designer",
+                    location: "Lake Colby, UK",
+                    img: "images/job-2.jpg"
+                },
+                {
+                    title: "UX Designer",
+                    location: "California, USA",
+                    img: "images/job-3.jpg"
+                },
+                {
+                    title: "Full-stack Web Developer",
+                    location: "Katlynburgh, Sweden",
+                    img: "images/job-4.jpg"
+                }
+            ]
+        },
+        
         "case-studies": {
             items: [
                 { title: "Senior React Dev", category: "Tech", desc: "Matching top talent with top startups.", img: "images/case-study-2.png" }
